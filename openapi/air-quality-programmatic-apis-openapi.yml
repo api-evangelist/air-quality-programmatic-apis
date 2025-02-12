@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Real-time Air Quality Tile API
+  description: API providing real-time air quality data as map tiles.
+  version: 1.0.0
+servers:
+  - url: https://tiles.aqicn.org/tiles
+    description: Production server
+paths:
+  /{aqi}/{z}/{x}/{y}.png:
+    get:
+      summary: Get air quality tile
+      description: >-
+        Retrieves a tile image representing air quality data for a specific
+        location and zoom level.
+      parameters:
+        - name: aqi
+          in: path
+          required: true
+          description: Type of air quality marker to display
+          schema:
+            type: string
+            enum:
+              - usepa-aqi
+              - usepa-pm25
+              - usepa-10
+              - usepa-o3
+              - usepa-no2
+              - usepa-so2
+              - usepa-co
+              - asean-pm10
+        - name: z
+          in: path
+          required: true
+          description: Zoom level of the tile
+          schema:
+            type: integer
+        - name: x
+          in: path
+          required: true
+          description: X coordinate of the tile
+          schema:
+            type: integer
+        - name: 'y'
+          in: path
+          required: true
+          description: Y coordinate of the tile
+          schema:
+            type: integer
+        - name: token
+          in: query
+          required: true
+          description: API token for authentication
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tile image retrieved successfully
+          content:
+            image/png: {}
+        '400':
+          description: Bad request (invalid parameters)
+        '403':
+          description: Unauthorized (invalid or missing token)
+        '503':
+          description: Service unavailable (due to maintenance or high traffic)
+      security:
+        - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+      description: API key for authentication
