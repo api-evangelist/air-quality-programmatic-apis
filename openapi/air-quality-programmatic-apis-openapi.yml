@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Real-time Air Quality Tile API
+  title: Air Quality Programmatic APIs Real-time Air Quality Tile API
   description: API providing real-time air quality data as map tiles.
   version: 1.0.0
 servers:
@@ -9,7 +9,7 @@ servers:
 paths:
   /{aqi}/{z}/{x}/{y}.png:
     get:
-      summary: Get air quality tile
+      summary: Air Quality Programmatic APIs Get air quality tile
       description: >-
         Retrieves a tile image representing air quality data for a specific
         location and zoom level.
