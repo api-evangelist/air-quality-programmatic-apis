@@ -1,0 +1,139 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Air Quality Programmatic APIs"
+  description: "Taxonomy for AQICN air quality APIs covering monitoring stations, pollutant measurements, AQI data, and geographic queries."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: aqicn-json-api
+      version: "1.0"
+      baseUrl: https://api.waqi.info
+      status: active
+    - namespace: aqicn-tile-api
+      version: "1.0"
+      baseUrl: https://tiles.aqicn.org/tiles
+      status: active
+
+  resources:
+    - name: AQIStation
+      apis: [aqicn-json-api]
+      actions: [get-by-city, get-by-geo, get-by-ip]
+      description: "Air quality monitoring station with real-time AQI and pollutant readings"
+    - name: StationSearch
+      apis: [aqicn-json-api]
+      actions: [search, list-in-bounds]
+      description: "Station discovery by keyword or geographic bounds"
+    - name: ForecastData
+      apis: [aqicn-json-api]
+      actions: [get]
+      description: "Multi-day air quality forecasts"
+    - name: MapTile
+      apis: [aqicn-tile-api]
+      actions: [get]
+      description: "Raster map tile showing AQI visualization"
+
+  actions:
+    - name: get-by-city
+      httpMethod: GET
+      pattern: read
+      description: "Get AQI by city name"
+    - name: get-by-geo
+      httpMethod: GET
+      pattern: read
+      description: "Get AQI by geographic coordinates"
+    - name: search
+      httpMethod: GET
+      pattern: read
+      description: "Search stations by keyword"
+    - name: list-in-bounds
+      httpMethod: GET
+      pattern: read
+      description: "List stations within geographic bounds"
+
+  schemas:
+    stations:
+      - name: AQIStation
+        description: "Air quality station reading"
+        keyFields: [aqi, idx, city, time, iaqi]
+      - name: CityInfo
+        description: "Station city and location"
+        keyFields: [name, url, geo]
+      - name: PollutantData
+        description: "Individual pollutant AQI values"
+        keyFields: [pm25, pm10, no2, o3, so2, co]
+    forecasts:
+      - name: ForecastData
+        description: "Multi-day air quality forecast"
+        keyFields: [daily]
+      - name: ForecastDay
+        description: "Single-day forecast"
+        keyFields: [avg, day, max, min]
+
+  enums:
+    pollutants:
+      - PM2.5
+      - PM10
+      - NO2 (Nitrogen Dioxide)
+      - O3 (Ozone)
+      - SO2 (Sulfur Dioxide)
+      - CO (Carbon Monoxide)
+      - UVI (UV Index)
+    aqiLevels:
+      - "0-50: Good"
+      - "51-100: Moderate"
+      - "101-150: Unhealthy for Sensitive Groups"
+      - "151-200: Unhealthy"
+      - "201-300: Very Unhealthy"
+      - "301+: Hazardous"
+    tileTypes:
+      - usepa-aqi
+      - usepa-pm25
+      - usepa-10
+      - usepa-o3
+      - usepa-no2
+      - usepa-so2
+      - usepa-co
+      - asean-pm10
+
+  authentication:
+    schemes:
+      - type: apiKey
+        description: "Free API token in query parameter ?token="
+        source: "https://aqicn.org/data-platform/token/"
+
+capability:
+  workflows:
+    - name: "Air Quality Monitoring Workflow"
+      file: capabilities/air-quality-monitoring.yaml
+      description: "Query real-time AQI and search monitoring stations"
+      apisCombined: [aqicn-json-api]
+      toolCount: 3
+      personas: [Developer, Environmental Analyst]
+      domains: [Air Quality, Public Health]
+
+  personas:
+    - id: developer
+      name: "Developer"
+      description: "App developer integrating air quality data into mobile or web applications"
+    - id: analyst
+      name: "Environmental Analyst"
+      description: "Researcher or analyst studying air quality trends and patterns"
+
+  domains:
+    - name: "Air Quality"
+      resources: [AQIStation, MapTile]
+    - name: "Public Health"
+      resources: [AQIStation, ForecastData]
+
+crossReference:
+  - resource: AQIStation
+    operations: [get-by-city, get-by-geo, get-by-ip]
+    workflows: ["Air Quality Monitoring Workflow"]
+    personas: [Developer, Environmental Analyst]
+  - resource: StationSearch
+    operations: [search, list-in-bounds]
+    workflows: ["Air Quality Monitoring Workflow"]
+    personas: [Developer, Environmental Analyst]

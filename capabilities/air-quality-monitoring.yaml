@@ -1,0 +1,101 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Air Quality Monitoring Workflow"
+  description: "Unified workflow for querying real-time air quality data, monitoring station health, and spatial air quality analysis. Used by environmental monitoring applications and public health systems."
+  tags:
+    - Air Quality
+    - Environment
+    - Public Health
+    - Open Data
+    - Monitoring
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AQICN_API_TOKEN: AQICN_API_TOKEN
+
+capability:
+  consumes:
+    - import: aqicn
+      location: ./shared/aqicn-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: air-quality-monitoring-api
+      description: "Unified REST API for air quality data retrieval and monitoring."
+      resources:
+        - path: /v1/air-quality/city/{city}
+          name: aqi-by-city
+          description: "Air quality by city name"
+          operations:
+            - method: GET
+              name: get-aqi-by-city
+              description: "Get current AQI for a city"
+              call: "aqicn.get-aqi-by-city"
+              with:
+                city: "rest.city"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/air-quality/coordinates
+          name: aqi-by-coordinates
+          description: "Air quality by coordinates"
+          operations:
+            - method: GET
+              name: get-aqi-by-coordinates
+              description: "Get AQI for coordinates"
+              call: "aqicn.get-aqi-by-coordinates"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/stations/search
+          name: station-search
+          description: "Search monitoring stations"
+          operations:
+            - method: GET
+              name: search-stations
+              description: "Search stations by keyword"
+              call: "aqicn.search-stations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: air-quality-monitoring-mcp
+      transport: http
+      description: "MCP server for AI-assisted air quality data retrieval and environmental analysis."
+      tools:
+        - name: get-aqi-by-city
+          description: "Get real-time air quality index (AQI) and pollutant data for a city"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aqicn.get-aqi-by-city"
+          with:
+            city: "tools.city"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-aqi-by-coordinates
+          description: "Get real-time AQI for a geographic location using latitude and longitude"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aqicn.get-aqi-by-coordinates"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-air-quality-stations
+          description: "Search for air quality monitoring stations by city or station name"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aqicn.search-stations"
+          outputParameters:
+            - type: object
+              mapping: "$."

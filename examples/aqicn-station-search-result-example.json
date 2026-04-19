@@ -1,0 +1,10 @@
+{
+  "status": "example_value",
+  "data": [
+    {
+      "uid": {},
+      "aqi": {},
+      "station": {}
+    }
+  ]
+}

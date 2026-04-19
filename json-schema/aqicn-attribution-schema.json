@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/air-quality-programmatic-apis/refs/heads/main/json-schema/aqicn-attribution-schema.json",
+  "title": "Attribution",
+  "description": "Data source attribution",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Attribution URL",
+      "example": "https://www.epa.gov/airnow"
+    },
+    "name": {
+      "type": "string",
+      "description": "Data source name",
+      "example": "US EPA AirNow"
+    }
+  }
+}

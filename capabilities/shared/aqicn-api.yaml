@@ -1,0 +1,172 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "AQICN Air Quality API"
+  description: "AQICN real-time air quality data API providing AQI measurements by location, city, and geographic bounds with forecast support."
+  tags:
+    - Air Quality
+    - Environment
+    - Open Data
+    - Public Health
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AQICN_API_TOKEN: AQICN_API_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: aqicn
+      baseUri: https://api.waqi.info
+      description: "AQICN real-time air quality JSON API"
+      authentication:
+        type: apikey
+        key: token
+        value: "{{AQICN_API_TOKEN}}"
+        placement: query
+      resources:
+        - name: stations-by-city
+          path: /feed/{city}/
+          description: "Get air quality by city name"
+          operations:
+            - name: get-aqi-by-city
+              method: GET
+              description: "Get real-time AQI for a city"
+              inputParameters:
+                - name: city
+                  in: path
+                  type: string
+                  required: true
+                  description: "City name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: stations-by-geo
+          path: /feed/geo:{lat};{lng}/
+          description: "Get air quality by coordinates"
+          operations:
+            - name: get-aqi-by-coordinates
+              method: GET
+              description: "Get real-time AQI for geographic coordinates"
+              inputParameters:
+                - name: lat
+                  in: path
+                  type: number
+                  required: true
+                  description: "Latitude"
+                - name: lng
+                  in: path
+                  type: number
+                  required: true
+                  description: "Longitude"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: station-search
+          path: /search/
+          description: "Search for stations"
+          operations:
+            - name: search-stations
+              method: GET
+              description: "Search monitoring stations by keyword"
+              inputParameters:
+                - name: keyword
+                  in: query
+                  type: string
+                  required: true
+                  description: "Search keyword"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: stations-in-bounds
+          path: /map/bounds/
+          description: "Get stations in map bounds"
+          operations:
+            - name: get-stations-in-bounds
+              method: GET
+              description: "Get all stations within a geographic bounding box"
+              inputParameters:
+                - name: latlng
+                  in: query
+                  type: string
+                  required: true
+                  description: "Bounding box coordinates"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: aqicn-rest
+      resources:
+        - path: /v1/air-quality/city/{city}
+          name: aqi-by-city
+          description: "Air quality by city"
+          operations:
+            - method: GET
+              name: get-aqi-by-city
+              description: "Get AQI for a city"
+              call: "aqicn.get-aqi-by-city"
+              with:
+                city: "rest.city"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/air-quality/geo
+          name: aqi-by-geo
+          description: "Air quality by coordinates"
+          operations:
+            - method: GET
+              name: get-aqi-by-coordinates
+              description: "Get AQI by coordinates"
+              call: "aqicn.get-aqi-by-coordinates"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: aqicn-mcp
+      transport: http
+      tools:
+        - name: get-aqi-by-city
+          description: "Get real-time air quality index for a city"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aqicn.get-aqi-by-city"
+          with:
+            city: "tools.city"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-aqi-by-coordinates
+          description: "Get real-time AQI for geographic coordinates"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aqicn.get-aqi-by-coordinates"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-stations
+          description: "Search for air quality monitoring stations"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "aqicn.search-stations"
+          outputParameters:
+            - type: object
+              mapping: "$."

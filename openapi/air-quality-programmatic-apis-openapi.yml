@@ -4,55 +4,55 @@ info:
   description: API providing real-time air quality data as map tiles.
   version: 1.0.0
 servers:
-  - url: https://tiles.aqicn.org/tiles
-    description: Production server
+- url: https://tiles.aqicn.org/tiles
+  description: Production server
 paths:
   /{aqi}/{z}/{x}/{y}.png:
     get:
-      summary: Air Quality Programmatic APIs Get air quality tile
+      summary: Air Quality Programmatic APIs Get Air Quality Tile
       description: >-
         Retrieves a tile image representing air quality data for a specific
         location and zoom level.
       parameters:
-        - name: aqi
-          in: path
-          required: true
-          description: Type of air quality marker to display
-          schema:
-            type: string
-            enum:
-              - usepa-aqi
-              - usepa-pm25
-              - usepa-10
-              - usepa-o3
-              - usepa-no2
-              - usepa-so2
-              - usepa-co
-              - asean-pm10
-        - name: z
-          in: path
-          required: true
-          description: Zoom level of the tile
-          schema:
-            type: integer
-        - name: x
-          in: path
-          required: true
-          description: X coordinate of the tile
-          schema:
-            type: integer
-        - name: 'y'
-          in: path
-          required: true
-          description: Y coordinate of the tile
-          schema:
-            type: integer
-        - name: token
-          in: query
-          required: true
-          description: API token for authentication
-          schema:
-            type: string
+      - name: aqi
+        in: path
+        required: true
+        description: Type of air quality marker to display
+        schema:
+          type: string
+          enum:
+          - usepa-aqi
+          - usepa-pm25
+          - usepa-10
+          - usepa-o3
+          - usepa-no2
+          - usepa-so2
+          - usepa-co
+          - asean-pm10
+      - name: z
+        in: path
+        required: true
+        description: Zoom level of the tile
+        schema:
+          type: integer
+      - name: x
+        in: path
+        required: true
+        description: X coordinate of the tile
+        schema:
+          type: integer
+      - name: 'y'
+        in: path
+        required: true
+        description: Y coordinate of the tile
+        schema:
+          type: integer
+      - name: token
+        in: query
+        required: true
+        description: API token for authentication
+        schema:
+          type: string
       responses:
         '200':
           description: Tile image retrieved successfully
@@ -65,7 +65,7 @@ paths:
         '503':
           description: Service unavailable (due to maintenance or high traffic)
       security:
-        - ApiKeyAuth: []
+      - ApiKeyAuth: []
 components:
   securitySchemes:
     ApiKeyAuth:

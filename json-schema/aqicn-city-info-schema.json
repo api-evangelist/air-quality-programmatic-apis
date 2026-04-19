@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/air-quality-programmatic-apis/refs/heads/main/json-schema/aqicn-city-info-schema.json",
+  "title": "CityInfo",
+  "description": "City and location information for the station",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "City and station name",
+      "example": "Beijing, China"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Station URL on AQICN",
+      "example": "https://aqicn.org/city/beijing/"
+    },
+    "geo": {
+      "type": "array",
+      "description": "Geographic coordinates [latitude, longitude]",
+      "items": {
+        "type": "number"
+      },
+      "example": [
+        39.9042,
+        116.4074
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/air-quality-programmatic-apis/refs/heads/main/json-schema/aqicn-station-search-result-schema.json",
+  "title": "StationSearchResult",
+  "description": "Station search result",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "example": "ok"
+    },
+    "data": {
+      "type": "array",
+      "description": "List of matching stations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "integer",
+            "description": "Station unique ID",
+            "example": 8502
+          },
+          "aqi": {
+            "type": "string",
+            "description": "Current AQI value or \"N/A\"",
+            "example": "45"
+          },
+          "station": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Station name",
+                "example": "Beijing, China"
+              },
+              "geo": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

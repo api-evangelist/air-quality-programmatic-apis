@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/air-quality-programmatic-apis/refs/heads/main/json-structure/aqicn-forecast-data-structure.json",
+  "name": "ForecastData",
+  "description": "Multi-day air quality and weather forecast",
+  "type": "object",
+  "properties": {
+    "daily": {
+      "type": "object",
+      "description": "Daily forecasts by pollutant",
+      "properties": {
+        "pm25": {
+          "type": "array",
+          "description": "PM2.5 daily forecast values",
+          "items": {
+            "$ref": "#/components/schemas/ForecastDay"
+          }
+        },
+        "pm10": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ForecastDay"
+          }
+        },
+        "o3": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ForecastDay"
+          }
+        },
+        "uvi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ForecastDay"
+          }
+        }
+      }
+    }
+  }
+}

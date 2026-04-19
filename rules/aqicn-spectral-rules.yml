@@ -1,0 +1,86 @@
+extends: "spectral:oas"
+
+rules:
+  info-title-aqicn:
+    description: API title should start with "Air Quality" or "AQICN"
+    severity: warn
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(Air Quality|AQICN)"
+
+  operation-id-required:
+    description: Every operation must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  operation-summary-required:
+    description: Every operation must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  operation-tags-required:
+    description: Every operation should have tags
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  token-parameter-required:
+    description: API token query parameter should be documented on all operations
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].parameters[?(@.name == 'token')]"
+    then:
+      field: required
+      function: truthy
+
+  response-200-required:
+    description: Operations must define a 200 response
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          required: ["200"]
+
+  response-description-required:
+    description: All responses must have a description
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  parameter-description-required:
+    description: All parameters should have descriptions
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  servers-defined:
+    description: Servers must be defined
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  servers-https:
+    description: Server URLs should use HTTPS
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"

@@ -1,0 +1,478 @@
+openapi: 3.1.0
+info:
+  title: AQICN JSON Air Quality API
+  description: |
+    Real-time and forecast air quality data from 11,000+ monitoring stations globally.
+    Returns AQI measurements for PM2.5, PM10, NO2, CO, SO2, and ozone pollutants.
+    Authentication requires a free API token from https://aqicn.org/data-platform/token/
+
+    Data is provided by the World Air Quality Index project (AQICN) for non-commercial use.
+    Rate limit: 1,000 requests per second.
+  version: "1.0.0"
+  contact:
+    url: https://aqicn.org/faq/
+  license:
+    name: Non-Commercial Use Only
+    url: https://aqicn.org/api/tos/
+  x-generated-from: documentation
+
+servers:
+- url: https://api.waqi.info
+  description: AQICN Production API
+
+security:
+- TokenAuth: []
+
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: query
+      name: token
+      description: API token obtained from https://aqicn.org/data-platform/token/
+
+  schemas:
+    AQIStation:
+      type: object
+      description: Air quality monitoring station with current readings
+      properties:
+        status:
+          type: string
+          description: Response status (ok or error)
+          example: ok
+        data:
+          $ref: '#/components/schemas/StationData'
+
+    StationData:
+      type: object
+      description: Station data including AQI and pollutant readings
+      properties:
+        aqi:
+          type: integer
+          description: Overall Air Quality Index value
+          example: 45
+        idx:
+          type: integer
+          description: Station ID in AQICN database
+          example: 8502
+        city:
+          $ref: '#/components/schemas/CityInfo'
+        time:
+          $ref: '#/components/schemas/TimeInfo'
+        iaqi:
+          $ref: '#/components/schemas/PollutantData'
+        forecast:
+          $ref: '#/components/schemas/ForecastData'
+        attributions:
+          type: array
+          description: Data source attributions
+          items:
+            $ref: '#/components/schemas/Attribution'
+
+    CityInfo:
+      type: object
+      description: City and location information for the station
+      properties:
+        name:
+          type: string
+          description: City and station name
+          example: Beijing, China
+        url:
+          type: string
+          format: uri
+          description: Station URL on AQICN
+          example: https://aqicn.org/city/beijing/
+        geo:
+          type: array
+          description: Geographic coordinates [latitude, longitude]
+          items:
+            type: number
+          example: [39.9042, 116.4074]
+
+    TimeInfo:
+      type: object
+      description: Timestamp information for the reading
+      properties:
+        s:
+          type: string
+          description: ISO 8601 timestamp of measurement
+          example: "2025-04-19 10:00:00"
+        tz:
+          type: string
+          description: Station timezone
+          example: "+08:00"
+        v:
+          type: integer
+          description: Unix timestamp
+          example: 1745056800
+
+    PollutantData:
+      type: object
+      description: Individual pollutant AQI values
+      properties:
+        pm25:
+          type: object
+          description: PM2.5 AQI reading
+          properties:
+            v: {type: number, example: 45}
+        pm10:
+          type: object
+          description: PM10 AQI reading
+          properties:
+            v: {type: number, example: 32}
+        no2:
+          type: object
+          description: Nitrogen dioxide AQI reading
+          properties:
+            v: {type: number, example: 12}
+        o3:
+          type: object
+          description: Ozone AQI reading
+          properties:
+            v: {type: number, example: 28}
+        so2:
+          type: object
+          description: Sulfur dioxide AQI reading
+          properties:
+            v: {type: number, example: 5}
+        co:
+          type: object
+          description: Carbon monoxide AQI reading
+          properties:
+            v: {type: number, example: 8}
+
+    ForecastData:
+      type: object
+      description: Multi-day air quality and weather forecast
+      properties:
+        daily:
+          type: object
+          description: Daily forecasts by pollutant
+          properties:
+            pm25:
+              type: array
+              description: PM2.5 daily forecast values
+              items:
+                $ref: '#/components/schemas/ForecastDay'
+            pm10:
+              type: array
+              items:
+                $ref: '#/components/schemas/ForecastDay'
+            o3:
+              type: array
+              items:
+                $ref: '#/components/schemas/ForecastDay'
+            uvi:
+              type: array
+              items:
+                $ref: '#/components/schemas/ForecastDay'
+
+    ForecastDay:
+      type: object
+      description: Single-day forecast value
+      properties:
+        avg:
+          type: integer
+          description: Average AQI for the day
+          example: 52
+        day:
+          type: string
+          description: Date string
+          example: "2025-04-20"
+        max:
+          type: integer
+          description: Maximum AQI for the day
+          example: 78
+        min:
+          type: integer
+          description: Minimum AQI for the day
+          example: 31
+
+    Attribution:
+      type: object
+      description: Data source attribution
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Attribution URL
+          example: https://www.epa.gov/airnow
+        name:
+          type: string
+          description: Data source name
+          example: "US EPA AirNow"
+
+    StationSearchResult:
+      type: object
+      description: Station search result
+      properties:
+        status:
+          type: string
+          example: ok
+        data:
+          type: array
+          description: List of matching stations
+          items:
+            type: object
+            properties:
+              uid:
+                type: integer
+                description: Station unique ID
+                example: 8502
+              aqi:
+                type: string
+                description: Current AQI value or "N/A"
+                example: "45"
+              station:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Station name
+                    example: "Beijing, China"
+                  geo:
+                    type: array
+                    items:
+                      type: number
+
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        status:
+          type: string
+          example: error
+        data:
+          type: string
+          description: Error message
+          example: "Invalid key"
+
+paths:
+  /feed/geo:{lat};{lng}/:
+    get:
+      operationId: getAQIByGeoCoordinates
+      summary: Air Quality Programmatic APIs AQICN Get AQI by Geographic Coordinates
+      description: Retrieve real-time air quality data for the nearest monitoring station to given latitude and longitude coordinates.
+      tags: [Stations, Geolocation]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: lat
+        in: path
+        required: true
+        description: Latitude coordinate
+        schema:
+          type: number
+        example: 39.9042
+      - name: lng
+        in: path
+        required: true
+        description: Longitude coordinate
+        schema:
+          type: number
+        example: 116.4074
+      - name: token
+        in: query
+        required: true
+        description: API authentication token
+        schema:
+          type: string
+        example: demo
+      responses:
+        '200':
+          description: Air quality data for nearest station
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AQIStation'
+              examples:
+                getAQIByGeoCoordinates200Example:
+                  summary: Default getAQIByGeoCoordinates 200 response
+                  x-microcks-default: true
+                  value:
+                    status: ok
+                    data:
+                      aqi: 45
+                      idx: 8502
+                      city:
+                        name: "Beijing, China"
+                        url: "https://aqicn.org/city/beijing/"
+                        geo: [39.9042, 116.4074]
+        '200_error':
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /feed/{city}/:
+    get:
+      operationId: getAQIByCity
+      summary: Air Quality Programmatic APIs AQICN Get AQI by City Name
+      description: Retrieve real-time air quality data for a city by name. City names follow AQICN URL conventions (e.g., "beijing", "london", "new-york").
+      tags: [Stations, Cities]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: city
+        in: path
+        required: true
+        description: City name or station ID
+        schema:
+          type: string
+        example: beijing
+      - name: token
+        in: query
+        required: true
+        description: API authentication token
+        schema:
+          type: string
+        example: demo
+      responses:
+        '200':
+          description: Air quality data for the city
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AQIStation'
+              examples:
+                getAQIByCity200Example:
+                  summary: Default getAQIByCity 200 response
+                  x-microcks-default: true
+                  value:
+                    status: ok
+                    data:
+                      aqi: 87
+                      idx: 1451
+                      city:
+                        name: "Shanghai, China"
+
+  /feed/ip/:
+    get:
+      operationId: getAQIByIP
+      summary: Air Quality Programmatic APIs AQICN Get AQI by IP Geolocation
+      description: Retrieve air quality data for the location nearest to the client's IP address using IP geolocation.
+      tags: [Stations, Geolocation]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: token
+        in: query
+        required: true
+        description: API authentication token
+        schema:
+          type: string
+        example: demo
+      responses:
+        '200':
+          description: Air quality data for IP-geolocated nearest station
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AQIStation'
+              examples:
+                getAQIByIP200Example:
+                  summary: Default getAQIByIP 200 response
+                  x-microcks-default: true
+                  value:
+                    status: ok
+                    data:
+                      aqi: 32
+                      idx: 5678
+
+  /search/:
+    get:
+      operationId: searchStations
+      summary: Air Quality Programmatic APIs AQICN Search Monitoring Stations
+      description: Search for air quality monitoring stations by keyword, city name, or station name.
+      tags: [Stations, Search]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: keyword
+        in: query
+        required: true
+        description: Search keyword (city or station name)
+        schema:
+          type: string
+        example: London
+      - name: token
+        in: query
+        required: true
+        description: API authentication token
+        schema:
+          type: string
+        example: demo
+      responses:
+        '200':
+          description: List of matching stations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StationSearchResult'
+              examples:
+                searchStations200Example:
+                  summary: Default searchStations 200 response
+                  x-microcks-default: true
+                  value:
+                    status: ok
+                    data:
+                    - uid: 5724
+                      aqi: "42"
+                      station:
+                        name: "London, United Kingdom"
+                        geo: [51.5074, -0.1278]
+
+  /map/bounds/:
+    get:
+      operationId: getStationsInBounds
+      summary: Air Quality Programmatic APIs AQICN Get Stations Within Map Bounds
+      description: Retrieve all monitoring stations and their current AQI values within a geographic bounding box. Useful for map overlays.
+      tags: [Stations, Map]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: latlng
+        in: query
+        required: true
+        description: Bounding box as lat1,lng1,lat2,lng2
+        schema:
+          type: string
+        example: "35.0,115.0,42.0,125.0"
+      - name: networks
+        in: query
+        required: false
+        description: Filter by network (all, china, us, etc.)
+        schema:
+          type: string
+        example: all
+      - name: token
+        in: query
+        required: true
+        description: API authentication token
+        schema:
+          type: string
+        example: demo
+      responses:
+        '200':
+          description: Stations within the bounding box
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StationSearchResult'
+              examples:
+                getStationsInBounds200Example:
+                  summary: Default getStationsInBounds 200 response
+                  x-microcks-default: true
+                  value:
+                    status: ok
+                    data:
+                    - uid: 1451
+                      aqi: "87"
+                      station:
+                        name: "Shanghai, China"

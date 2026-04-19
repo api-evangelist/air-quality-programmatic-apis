@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/air-quality-programmatic-apis/refs/heads/main/json-schema/aqicn-forecast-day-schema.json",
+  "title": "ForecastDay",
+  "description": "Single-day forecast value",
+  "type": "object",
+  "properties": {
+    "avg": {
+      "type": "integer",
+      "description": "Average AQI for the day",
+      "example": 52
+    },
+    "day": {
+      "type": "string",
+      "description": "Date string",
+      "example": "2025-04-20"
+    },
+    "max": {
+      "type": "integer",
+      "description": "Maximum AQI for the day",
+      "example": 78
+    },
+    "min": {
+      "type": "integer",
+      "description": "Minimum AQI for the day",
+      "example": 31
+    }
+  }
+}

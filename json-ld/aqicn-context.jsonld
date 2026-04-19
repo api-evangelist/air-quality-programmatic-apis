@@ -1,0 +1,117 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "aqicn": "https://aqicn.org/schema/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "status": {
+      "@id": "aqicn:status",
+      "@type": "xsd:string"
+    },
+    "data": {
+      "@id": "aqicn:data",
+      "@type": "xsd:string"
+    },
+    "AQIStation": "aqicn:AQIStation",
+    "aqi": {
+      "@id": "aqicn:aqi",
+      "@type": "xsd:integer"
+    },
+    "idx": {
+      "@id": "aqicn:idx",
+      "@type": "xsd:integer"
+    },
+    "city": {
+      "@id": "aqicn:city",
+      "@type": "xsd:string"
+    },
+    "time": {
+      "@id": "aqicn:time",
+      "@type": "xsd:string"
+    },
+    "iaqi": {
+      "@id": "aqicn:iaqi",
+      "@type": "xsd:string"
+    },
+    "forecast": {
+      "@id": "aqicn:forecast",
+      "@type": "xsd:string"
+    },
+    "attributions": {
+      "@id": "aqicn:attributions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "StationData": "aqicn:StationData",
+    "name": "schema:name",
+    "url": "schema:url",
+    "geo": {
+      "@id": "aqicn:geo",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "CityInfo": "aqicn:CityInfo",
+    "s": {
+      "@id": "aqicn:s",
+      "@type": "xsd:string"
+    },
+    "tz": {
+      "@id": "aqicn:tz",
+      "@type": "xsd:string"
+    },
+    "v": {
+      "@id": "aqicn:v",
+      "@type": "xsd:integer"
+    },
+    "TimeInfo": "aqicn:TimeInfo",
+    "pm25": {
+      "@id": "aqicn:pm25",
+      "@type": "xsd:string"
+    },
+    "pm10": {
+      "@id": "aqicn:pm10",
+      "@type": "xsd:string"
+    },
+    "no2": {
+      "@id": "aqicn:no2",
+      "@type": "xsd:string"
+    },
+    "o3": {
+      "@id": "aqicn:o3",
+      "@type": "xsd:string"
+    },
+    "so2": {
+      "@id": "aqicn:so2",
+      "@type": "xsd:string"
+    },
+    "co": {
+      "@id": "aqicn:co",
+      "@type": "xsd:string"
+    },
+    "PollutantData": "aqicn:PollutantData",
+    "daily": {
+      "@id": "aqicn:daily",
+      "@type": "xsd:string"
+    },
+    "ForecastData": "aqicn:ForecastData",
+    "avg": {
+      "@id": "aqicn:avg",
+      "@type": "xsd:integer"
+    },
+    "day": {
+      "@id": "aqicn:day",
+      "@type": "xsd:string"
+    },
+    "max": {
+      "@id": "aqicn:max",
+      "@type": "xsd:integer"
+    },
+    "min": {
+      "@id": "aqicn:min",
+      "@type": "xsd:integer"
+    },
+    "ForecastDay": "aqicn:ForecastDay",
+    "Attribution": "aqicn:Attribution",
+    "StationSearchResult": "aqicn:StationSearchResult"
+  }
+}

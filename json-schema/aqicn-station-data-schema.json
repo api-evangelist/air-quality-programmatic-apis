@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/air-quality-programmatic-apis/refs/heads/main/json-schema/aqicn-station-data-schema.json",
+  "title": "StationData",
+  "description": "Station data including AQI and pollutant readings",
+  "type": "object",
+  "properties": {
+    "aqi": {
+      "type": "integer",
+      "description": "Overall Air Quality Index value",
+      "example": 45
+    },
+    "idx": {
+      "type": "integer",
+      "description": "Station ID in AQICN database",
+      "example": 8502
+    },
+    "city": {
+      "$ref": "#/components/schemas/CityInfo"
+    },
+    "time": {
+      "$ref": "#/components/schemas/TimeInfo"
+    },
+    "iaqi": {
+      "$ref": "#/components/schemas/PollutantData"
+    },
+    "forecast": {
+      "$ref": "#/components/schemas/ForecastData"
+    },
+    "attributions": {
+      "type": "array",
+      "description": "Data source attributions",
+      "items": {
+        "$ref": "#/components/schemas/Attribution"
+      }
+    }
+  }
+}

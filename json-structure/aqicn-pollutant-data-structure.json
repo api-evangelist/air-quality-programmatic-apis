@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/air-quality-programmatic-apis/refs/heads/main/json-structure/aqicn-pollutant-data-structure.json",
+  "name": "PollutantData",
+  "description": "Individual pollutant AQI values",
+  "type": "object",
+  "properties": {
+    "pm25": {
+      "type": "object",
+      "description": "PM2.5 AQI reading",
+      "properties": {
+        "v": {
+          "type": "double",
+          "example": 45
+        }
+      }
+    },
+    "pm10": {
+      "type": "object",
+      "description": "PM10 AQI reading",
+      "properties": {
+        "v": {
+          "type": "double",
+          "example": 32
+        }
+      }
+    },
+    "no2": {
+      "type": "object",
+      "description": "Nitrogen dioxide AQI reading",
+      "properties": {
+        "v": {
+          "type": "double",
+          "example": 12
+        }
+      }
+    },
+    "o3": {
+      "type": "object",
+      "description": "Ozone AQI reading",
+      "properties": {
+        "v": {
+          "type": "double",
+          "example": 28
+        }
+      }
+    },
+    "so2": {
+      "type": "object",
+      "description": "Sulfur dioxide AQI reading",
+      "properties": {
+        "v": {
+          "type": "double",
+          "example": 5
+        }
+      }
+    },
+    "co": {
+      "type": "object",
+      "description": "Carbon monoxide AQI reading",
+      "properties": {
+        "v": {
+          "type": "double",
+          "example": 8
+        }
+      }
+    }
+  }
+}

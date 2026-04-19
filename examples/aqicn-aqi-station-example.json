@@ -1,0 +1,9 @@
+{
+  "status": "example_value",
+  "data": {
+    "aqi": {},
+    "idx": {},
+    "city": {},
+    "time": {}
+  }
+}

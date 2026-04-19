@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/air-quality-programmatic-apis/refs/heads/main/json-structure/aqicn-aqi-station-structure.json",
+  "name": "AQIStation",
+  "description": "Air quality monitoring station with current readings",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Response status (ok or error)",
+      "example": "ok"
+    },
+    "data": {
+      "$ref": "#/components/schemas/StationData"
+    }
+  }
+}
