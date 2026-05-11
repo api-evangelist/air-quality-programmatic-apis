@@ -134,6 +134,8 @@ common:
   url: vocabulary/aqicn-vocabulary.yaml
   type: Vocabulary
   description: Taxonomy for AQICN air quality APIs.
+- type: Integrations
+  url: https://aqicn.org/integrations
 created: '2024-11-07'
 modified: '2026-04-19'
 position: Consuming
@@ -141,6 +143,10 @@ description: >-
   Air Quality Programmatic APIs provide real-time and forecast air quality data from 11,000+ monitoring stations in 1,000+ cities worldwide. APIs deliver Air Quality Index (AQI) measurements for PM2.5,
   PM10, NO2, CO, SO2, and ozone pollutants. Provided by AQICN (World Air Quality Index project) in partnership with the US EPA and global environmental agencies. Data is available via JSON API and map tile
   API for visualization.
+integrations:
+  - name: the World Air Quality Index project
+  - name: made in åäº¬
+  - name: made in Scheveningen
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
