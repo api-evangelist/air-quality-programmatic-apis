@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AQICN JSON Air Quality API — Geolocation
+  description: 'AQICN JSON Air Quality API — Geolocation. 2 operations. Lead operation: Air Quality Programmatic APIs AQICN
+    Get AQI by Geographic Coordinates. Self-contained Naftiko capability covering one Air Quality Programmatic Apis business
+    surface.'
+  tags:
+  - Air Quality Programmatic Apis
+  - Geolocation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIR_QUALITY_PROGRAMMATIC_APIS_API_KEY: AIR_QUALITY_PROGRAMMATIC_APIS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aqicn-json-geolocation
+    baseUri: https://api.waqi.info
+    description: AQICN JSON Air Quality API — Geolocation business capability. Self-contained, no shared references.
+    resources:
+    - name: feed-geo:{lat};{lng}
+      path: /feed/geo:{lat};{lng}/
+      operations:
+      - name: getaqibygeocoordinates
+        method: GET
+        description: Air Quality Programmatic APIs AQICN Get AQI by Geographic Coordinates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: lat
+          in: path
+          type: number
+          description: Latitude coordinate
+          required: true
+        - name: lng
+          in: path
+          type: number
+          description: Longitude coordinate
+          required: true
+        - name: token
+          in: query
+          type: string
+          description: API authentication token
+          required: true
+    - name: feed-ip
+      path: /feed/ip/
+      operations:
+      - name: getaqibyip
+        method: GET
+        description: Air Quality Programmatic APIs AQICN Get AQI by IP Geolocation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: query
+          type: string
+          description: API authentication token
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.AIR_QUALITY_PROGRAMMATIC_APIS_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: aqicn-json-geolocation-rest
+    port: 8080
+    description: REST adapter for AQICN JSON Air Quality API — Geolocation. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/feed/geo-lat-lng
+      name: feed-geo-lat-lng
+      description: REST surface for feed-geo:{lat};{lng}.
+      operations:
+      - method: GET
+        name: getaqibygeocoordinates
+        description: Air Quality Programmatic APIs AQICN Get AQI by Geographic Coordinates
+        call: aqicn-json-geolocation.getaqibygeocoordinates
+        with:
+          lat: rest.lat
+          lng: rest.lng
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/feed/ip
+      name: feed-ip
+      description: REST surface for feed-ip.
+      operations:
+      - method: GET
+        name: getaqibyip
+        description: Air Quality Programmatic APIs AQICN Get AQI by IP Geolocation
+        call: aqicn-json-geolocation.getaqibyip
+        with:
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aqicn-json-geolocation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AQICN JSON Air Quality API — Geolocation. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: air-quality-programmatic-apis-aqicn
+      description: Air Quality Programmatic APIs AQICN Get AQI by Geographic Coordinates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: aqicn-json-geolocation.getaqibygeocoordinates
+      with:
+        lat: tools.lat
+        lng: tools.lng
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: air-quality-programmatic-apis-aqicn-2
+      description: Air Quality Programmatic APIs AQICN Get AQI by IP Geolocation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: aqicn-json-geolocation.getaqibyip
+      with:
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.

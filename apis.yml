@@ -1,6 +1,5 @@
 aid: air-quality-programmatic-apis
-url: >-
-  https://raw.githubusercontent.com/api-search/air-quality-programmatic-apis/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-search/air-quality-programmatic-apis/refs/heads/main/apis.yml
 apis:
 - aid: air-quality-programmatic-apis:air-quality-programmatic-apis
   name: AQICN Real-Time Air Quality API
@@ -26,9 +25,11 @@ apis:
   - url: https://aqicn.org/data-platform/token/
     type: Authentication
     title: API Token Request
-  description: >-
-    Real-time and forecast air quality data from 11,000+ monitoring stations globally. Returns AQI measurements for PM2.5, PM10, NO2, CO, SO2, and ozone pollutants by city, station, geographic coordinates,
-    or IP geolocation. Includes weather data and 3-8 day air quality forecasts.
+  - type: NaftikoCapability
+    url: capabilities/air-quality-programmatic-apis.yaml
+  description: Real-time and forecast air quality data from 11,000+ monitoring stations globally. Returns AQI measurements
+    for PM2.5, PM10, NO2, CO, SO2, and ozone pollutants by city, station, geographic coordinates, or IP geolocation. Includes
+    weather data and 3-8 day air quality forecasts.
 - aid: air-quality-programmatic-apis:aqicn-json-api
   name: AQICN JSON Air Quality API
   tags:
@@ -39,8 +40,8 @@ apis:
   - Real-Time
   - Forecast
   humanURL: https://aqicn.org/json-api/doc/
-  description: JSON API returning real-time AQI station data by city name, station name, geographic coordinates, or IP geolocation. Includes pollutant breakdowns (PM2.5, PM10, NO2, CO, SO2, O3), 
-    weather data, and multi-day forecasts.
+  description: JSON API returning real-time AQI station data by city name, station name, geographic coordinates, or IP geolocation.
+    Includes pollutant breakdowns (PM2.5, PM10, NO2, CO, SO2, O3), weather data, and multi-day forecasts.
   properties:
   - url: https://aqicn.org/json-api/doc/
     type: Documentation
@@ -48,6 +49,16 @@ apis:
     type: APIReference
   - url: openapi/aqicn-json-api-openapi.yaml
     type: OpenAPI
+  - type: NaftikoCapability
+    url: capabilities/aqicn-json-cities.yaml
+  - type: NaftikoCapability
+    url: capabilities/aqicn-json-geolocation.yaml
+  - type: NaftikoCapability
+    url: capabilities/aqicn-json-map.yaml
+  - type: NaftikoCapability
+    url: capabilities/aqicn-json-search.yaml
+  - type: NaftikoCapability
+    url: capabilities/aqicn-json-stations.yaml
 name: Air Quality Programmatic APIs
 tags:
 - Air Quality
@@ -126,10 +137,6 @@ common:
   url: rules/aqicn-spectral-rules.yml
   type: SpectralRules
   description: Spectral rules for AQICN API conventions.
-- name: Air Quality Monitoring Capability
-  url: capabilities/air-quality-monitoring.yaml
-  type: NaftikoCapability
-  description: Naftiko workflow for air quality monitoring.
 - name: AQICN Vocabulary
   url: vocabulary/aqicn-vocabulary.yaml
   type: Vocabulary
@@ -137,16 +144,16 @@ common:
 - type: Integrations
   url: https://aqicn.org/integrations
 created: '2024-11-07'
-modified: '2026-04-19'
+modified: '2026-05-19'
 position: Consuming
-description: >-
-  Air Quality Programmatic APIs provide real-time and forecast air quality data from 11,000+ monitoring stations in 1,000+ cities worldwide. APIs deliver Air Quality Index (AQI) measurements for PM2.5,
-  PM10, NO2, CO, SO2, and ozone pollutants. Provided by AQICN (World Air Quality Index project) in partnership with the US EPA and global environmental agencies. Data is available via JSON API and map tile
-  API for visualization.
+description: Air Quality Programmatic APIs provide real-time and forecast air quality data from 11,000+ monitoring stations
+  in 1,000+ cities worldwide. APIs deliver Air Quality Index (AQI) measurements for PM2.5, PM10, NO2, CO, SO2, and ozone pollutants.
+  Provided by AQICN (World Air Quality Index project) in partnership with the US EPA and global environmental agencies. Data
+  is available via JSON API and map tile API for visualization.
 integrations:
-  - name: the World Air Quality Index project
-  - name: made in åäº¬
-  - name: made in Scheveningen
+- name: the World Air Quality Index project
+- name: made in åäº¬
+- name: made in Scheveningen
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

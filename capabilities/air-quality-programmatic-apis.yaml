@@ -1,0 +1,111 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Air Quality Programmatic APIs Real-time Air Quality Tile API
+  description: 'Air Quality Programmatic APIs Real-time Air Quality Tile API. 1 operations. Lead operation: Air Quality Programmatic
+    APIs Get Air Quality Tile. Self-contained Naftiko capability covering one Air Quality Programmatic Apis business surface.'
+  tags:
+  - Air Quality Programmatic Apis
+  - Air Quality Programmatic APIs Real-time Air Quality Tile API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIR_QUALITY_PROGRAMMATIC_APIS_API_KEY: AIR_QUALITY_PROGRAMMATIC_APIS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: air-quality-programmatic-apis
+    baseUri: https://tiles.aqicn.org/tiles
+    description: Air Quality Programmatic APIs Real-time Air Quality Tile API business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: aqi-z-x-y}.png
+      path: /{aqi}/{z}/{x}/{y}.png
+      operations:
+      - name: get
+        method: GET
+        description: Air Quality Programmatic APIs Get Air Quality Tile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: aqi
+          in: path
+          type: string
+          description: Type of air quality marker to display
+          required: true
+        - name: z
+          in: path
+          type: integer
+          description: Zoom level of the tile
+          required: true
+        - name: x
+          in: path
+          type: integer
+          description: X coordinate of the tile
+          required: true
+        - name: y
+          in: path
+          type: integer
+          description: Y coordinate of the tile
+          required: true
+        - name: token
+          in: query
+          type: string
+          description: API token for authentication
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.AIR_QUALITY_PROGRAMMATIC_APIS_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: air-quality-programmatic-apis-rest
+    port: 8080
+    description: REST adapter for Air Quality Programmatic APIs Real-time Air Quality Tile API. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/{aqi}/{z}/{x}/y-png
+      name: aqi-z-x-y-png
+      description: REST surface for aqi-z-x-y}.png.
+      operations:
+      - method: GET
+        name: get
+        description: Air Quality Programmatic APIs Get Air Quality Tile
+        call: air-quality-programmatic-apis.get
+        with:
+          aqi: rest.aqi
+          z: rest.z
+          x: rest.x
+          y: rest.y
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: air-quality-programmatic-apis-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Air Quality Programmatic APIs Real-time Air Quality Tile API. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: air-quality-programmatic-apis-get
+      description: Air Quality Programmatic APIs Get Air Quality Tile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: air-quality-programmatic-apis.get
+      with:
+        aqi: tools.aqi
+        z: tools.z
+        x: tools.x
+        y: tools.y
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.

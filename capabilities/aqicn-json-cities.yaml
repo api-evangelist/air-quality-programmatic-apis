@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AQICN JSON Air Quality API — Cities
+  description: 'AQICN JSON Air Quality API — Cities. 1 operations. Lead operation: Air Quality Programmatic APIs AQICN Get
+    AQI by City Name. Self-contained Naftiko capability covering one Air Quality Programmatic Apis business surface.'
+  tags:
+  - Air Quality Programmatic Apis
+  - Cities
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIR_QUALITY_PROGRAMMATIC_APIS_API_KEY: AIR_QUALITY_PROGRAMMATIC_APIS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aqicn-json-cities
+    baseUri: https://api.waqi.info
+    description: AQICN JSON Air Quality API — Cities business capability. Self-contained, no shared references.
+    resources:
+    - name: feed-city
+      path: /feed/{city}/
+      operations:
+      - name: getaqibycity
+        method: GET
+        description: Air Quality Programmatic APIs AQICN Get AQI by City Name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: city
+          in: path
+          type: string
+          description: City name or station ID
+          required: true
+        - name: token
+          in: query
+          type: string
+          description: API authentication token
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.AIR_QUALITY_PROGRAMMATIC_APIS_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: aqicn-json-cities-rest
+    port: 8080
+    description: REST adapter for AQICN JSON Air Quality API — Cities. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/feed/{city}
+      name: feed-city
+      description: REST surface for feed-city.
+      operations:
+      - method: GET
+        name: getaqibycity
+        description: Air Quality Programmatic APIs AQICN Get AQI by City Name
+        call: aqicn-json-cities.getaqibycity
+        with:
+          city: rest.city
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aqicn-json-cities-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AQICN JSON Air Quality API — Cities. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: air-quality-programmatic-apis-aqicn
+      description: Air Quality Programmatic APIs AQICN Get AQI by City Name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: aqicn-json-cities.getaqibycity
+      with:
+        city: tools.city
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
