@@ -1,0 +1,372 @@
+{
+  "item": [
+    {
+      "id": "51e0b000-2dfd-42c9-9683-91f9a8a9ed9a",
+      "name": "Air Quality Programmatic APIs Get Air Quality Tile",
+      "request": {
+        "name": "Air Quality Programmatic APIs Get Air Quality Tile",
+        "description": {
+          "content": "Retrieves a tile image representing air quality data for a specific location and zoom level.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            ":aqi",
+            ":z",
+            ":x",
+            "{{y}}.png"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "token",
+              "value": "<string>",
+              "description": "(Required) API token for authentication"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "aqi",
+              "description": "(Required) Type of air quality marker to display"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "z",
+              "description": "(Required) Zoom level of the tile"
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "x",
+              "description": "(Required) X coordinate of the tile"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "image/png"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "token"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "query"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "9583dfe7-c58a-4596-822e-2c1796dcd307",
+          "name": "Tile image retrieved successfully",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":aqi",
+                ":z",
+                ":x",
+                "{{y}}.png"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "<string>"
+                },
+                {
+                  "key": "token",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aqi",
+                  "description": "(Required) Type of air quality marker to display"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "z",
+                  "description": "(Required) Zoom level of the tile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "x",
+                  "description": "(Required) X coordinate of the tile"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "image/png"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "b6cf1ae0-f099-461a-93f0-ada5f1519105",
+          "name": "Bad request (invalid parameters)",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":aqi",
+                ":z",
+                ":x",
+                "{{y}}.png"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "<string>"
+                },
+                {
+                  "key": "token",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aqi",
+                  "description": "(Required) Type of air quality marker to display"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "z",
+                  "description": "(Required) Zoom level of the tile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "x",
+                  "description": "(Required) X coordinate of the tile"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "68582f48-fc98-496b-a434-9bd852b501e9",
+          "name": "Unauthorized (invalid or missing token)",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":aqi",
+                ":z",
+                ":x",
+                "{{y}}.png"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "<string>"
+                },
+                {
+                  "key": "token",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aqi",
+                  "description": "(Required) Type of air quality marker to display"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "z",
+                  "description": "(Required) Zoom level of the tile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "x",
+                  "description": "(Required) X coordinate of the tile"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "cbc34d48-2cf6-4799-a098-77dc0b526371",
+          "name": "Service unavailable (due to maintenance or high traffic)",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ":aqi",
+                ":z",
+                ":x",
+                "{{y}}.png"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "<string>"
+                },
+                {
+                  "key": "token",
+                  "value": "<API Key>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aqi",
+                  "description": "(Required) Type of air quality marker to display"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "z",
+                  "description": "(Required) Zoom level of the tile"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "x",
+                  "description": "(Required) X coordinate of the tile"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tiles.aqicn.org/tiles",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Y coordinate of the tile",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "y"
+    }
+  ],
+  "info": {
+    "_postman_id": "5f55c230-aad2-4825-a4bd-f31e90f8aad4",
+    "name": "Air Quality Programmatic APIs Real-time Air Quality Tile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API providing real-time air quality data as map tiles.",
+      "type": "text/plain"
+    }
+  }
+}

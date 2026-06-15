@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Air Quality Programmatic APIs Real-time Air Quality Tile API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Air Quality Programmatic APIs Get Air Quality Tile",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://tiles.aqicn.org/tiles/:aqi/:z/:x/:y.png",
+        "params": [
+          {
+            "name": "aqi",
+            "value": "",
+            "type": "path",
+            "description": "Type of air quality marker to display"
+          },
+          {
+            "name": "z",
+            "value": "",
+            "type": "path",
+            "description": "Zoom level of the tile"
+          },
+          {
+            "name": "x",
+            "value": "",
+            "type": "path",
+            "description": "X coordinate of the tile"
+          },
+          {
+            "name": "y",
+            "value": "",
+            "type": "path",
+            "description": "Y coordinate of the tile"
+          },
+          {
+            "name": "token",
+            "value": "",
+            "type": "query",
+            "description": "API token for authentication"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "token",
+          "value": "{{token}}",
+          "placement": "query"
+        }
+      },
+      "docs": "Retrieves a tile image representing air quality data for a specific location and zoom level."
+    }
+  ],
+  "bundled": true
+}
