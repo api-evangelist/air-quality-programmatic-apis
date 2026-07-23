@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Map API
+  description: API providing real-time air quality data as map tiles.
+  version: 1.0.0
+servers:
+- url: https://tiles.aqicn.org/tiles
+  description: Production server
+tags:
+- name: Map
+paths:
+  /map/bounds/:
+    get:
+      operationId: getStationsInBounds
+      summary: Air Quality Programmatic APIs AQICN Get Stations Within Map Bounds
+      description: Retrieve all monitoring stations and their current AQI values within a geographic bounding box. Useful for map overlays.
+      tags:
+      - Map
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: latlng
+        in: query
+        required: true
+        description: Bounding box as lat1,lng1,lat2,lng2
+        schema:
+          type: string
+        example: 35.0,115.0,42.0,125.0
+      - name: networks
+        in: query
+        required: false
+        description: Filter by network (all, china, us, etc.)
+        schema:
+          type: string
+        example: all
+      - name: token
+        in: query
+        required: true
+        description: API authentication token
+        schema:
+          type: string
+        example: demo
+      responses:
+        '200':
+          description: Stations within the bounding box
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StationSearchResult'
+              examples:
+                getStationsInBounds200Example:
+                  summary: Default getStationsInBounds 200 response
+                  x-microcks-default: true
+                  value:
+                    status: ok
+                    data:
+                    - uid: 1451
+                      aqi: '87'
+                      station:
+                        name: Shanghai, China
+components:
+  schemas:
+    StationSearchResult:
+      type: object
+      description: Station search result
+      properties:
+        status:
+          type: string
+          example: ok
+        data:
+          type: array
+          description: List of matching stations
+          items:
+            type: object
+            properties:
+              uid:
+                type: integer
+                description: Station unique ID
+                example: 8502
+              aqi:
+                type: string
+                description: Current AQI value or "N/A"
+                example: '45'
+              station:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Station name
+                    example: Beijing, China
+                  geo:
+                    type: array
+                    items:
+                      type: number
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: token
+      description: API key for authentication
