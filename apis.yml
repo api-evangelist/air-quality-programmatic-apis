@@ -1,54 +1,113 @@
 aid: air-quality-programmatic-apis
 url: https://raw.githubusercontent.com/api-search/air-quality-programmatic-apis/refs/heads/main/apis.yml
 apis:
-  - aid: air-quality-programmatic-apis:air-quality-programmatic-apis
-    name: AQICN Real-Time Air Quality API
-    tags:
-      - Air Quality
-      - AQI
-      - PM2.5
-      - EPA
-      - Environment
-      - Public Health
-      - Real-Time
-      - Open Data
-    humanURL: https://aqicn.org/api/
-    properties:
-      - url: https://aqicn.org/api/
-        type: Documentation
-      - url: https://aqicn.org/json-api/doc/
-        type: APIReference
-        title: JSON API Reference
-      - url: openapi/air-quality-programmatic-apis-openapi.yml
-        type: OpenAPI
-        title: Map Tile API
-      - url: https://aqicn.org/data-platform/token/
-        type: Authentication
-        title: API Token Request
-    description: >-
-      Real-time and forecast air quality data from 11,000+ monitoring stations globally. Returns AQI measurements for
-      PM2.5, PM10, NO2, CO, SO2, and ozone pollutants by city, station, geographic coordinates, or IP geolocation.
-      Includes weather data and 3-8 day air quality forecasts.
-  - aid: air-quality-programmatic-apis:aqicn-json-api
-    name: AQICN JSON Air Quality API
-    tags:
-      - Air Quality
-      - AQI
-      - PM2.5
-      - JSON
-      - Real-Time
-      - Forecast
-    humanURL: https://aqicn.org/json-api/doc/
-    description: >-
-      JSON API returning real-time AQI station data by city name, station name, geographic coordinates, or IP
-      geolocation. Includes pollutant breakdowns (PM2.5, PM10, NO2, CO, SO2, O3), weather data, and multi-day forecasts.
-    properties:
-      - url: https://aqicn.org/json-api/doc/
-        type: Documentation
-      - url: https://aqicn.org/json-api/doc/
-        type: APIReference
-      - url: openapi/aqicn-json-api-openapi.yaml
-        type: OpenAPI
+- aid: >-
+    air-quality-programmatic-apis:air-quality-programmatic-apis-air-quality-programmatic-apis-real-time-air-quality-tile-api-api
+  name: >-
+    Air Quality Programmatic APIs Air Quality Programmatic APIs Real Time Air Quality Tile API API
+  description: >-
+    The Air Quality Programmatic APIs Real Time Air Quality Tile API API from Air Quality Programmatic
+    APIs — 1 operation(s) for air quality programmatic apis real time air quality tile api.
+  humanURL: https://aqicn.org/api/
+  tags:
+  - Air Quality Programmatic APIs Real Time Air Quality Tile API
+  properties:
+  - type: OpenAPI
+    url: >-
+      openapi/air-quality-programmatic-apis-air-quality-programmatic-apis-real-time-air-quality-tile-api-api-openapi.yml
+  - type: Documentation
+    url: https://aqicn.org/api/
+  - type: APIReference
+    url: https://aqicn.org/json-api/doc/
+  - type: Authentication
+    url: https://aqicn.org/data-platform/token/
+  - type: Documentation
+    url: https://aqicn.org/json-api/doc/
+- aid: air-quality-programmatic-apis:air-quality-programmatic-apis-cities-api
+  name: Air Quality Programmatic APIs Cities API
+  description: The Cities API from Air Quality Programmatic APIs — 1 operation(s) for cities.
+  humanURL: https://aqicn.org/api/
+  tags:
+  - Cities
+  properties:
+  - type: OpenAPI
+    url: openapi/air-quality-programmatic-apis-cities-api-openapi.yml
+  - type: Documentation
+    url: https://aqicn.org/api/
+  - type: APIReference
+    url: https://aqicn.org/json-api/doc/
+  - type: Authentication
+    url: https://aqicn.org/data-platform/token/
+  - type: Documentation
+    url: https://aqicn.org/json-api/doc/
+- aid: air-quality-programmatic-apis:air-quality-programmatic-apis-geolocation-api
+  name: Air Quality Programmatic APIs Geolocation API
+  description: The Geolocation API from Air Quality Programmatic APIs — 2 operation(s) for geolocation.
+  humanURL: https://aqicn.org/api/
+  tags:
+  - Geolocation
+  properties:
+  - type: OpenAPI
+    url: openapi/air-quality-programmatic-apis-geolocation-api-openapi.yml
+  - type: Documentation
+    url: https://aqicn.org/api/
+  - type: APIReference
+    url: https://aqicn.org/json-api/doc/
+  - type: Authentication
+    url: https://aqicn.org/data-platform/token/
+  - type: Documentation
+    url: https://aqicn.org/json-api/doc/
+- aid: air-quality-programmatic-apis:air-quality-programmatic-apis-map-api
+  name: Air Quality Programmatic APIs Map API
+  description: The Map API from Air Quality Programmatic APIs — 1 operation(s) for map.
+  humanURL: https://aqicn.org/api/
+  tags:
+  - Map
+  properties:
+  - type: OpenAPI
+    url: openapi/air-quality-programmatic-apis-map-api-openapi.yml
+  - type: Documentation
+    url: https://aqicn.org/api/
+  - type: APIReference
+    url: https://aqicn.org/json-api/doc/
+  - type: Authentication
+    url: https://aqicn.org/data-platform/token/
+  - type: Documentation
+    url: https://aqicn.org/json-api/doc/
+- aid: air-quality-programmatic-apis:air-quality-programmatic-apis-search-api
+  name: Air Quality Programmatic APIs Search API
+  description: The Search API from Air Quality Programmatic APIs — 1 operation(s) for search.
+  humanURL: https://aqicn.org/api/
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/air-quality-programmatic-apis-search-api-openapi.yml
+  - type: Documentation
+    url: https://aqicn.org/api/
+  - type: APIReference
+    url: https://aqicn.org/json-api/doc/
+  - type: Authentication
+    url: https://aqicn.org/data-platform/token/
+  - type: Documentation
+    url: https://aqicn.org/json-api/doc/
+- aid: air-quality-programmatic-apis:air-quality-programmatic-apis-stations-api
+  name: Air Quality Programmatic APIs Stations API
+  description: The Stations API from Air Quality Programmatic APIs — 5 operation(s) for stations.
+  humanURL: https://aqicn.org/api/
+  tags:
+  - Stations
+  properties:
+  - type: OpenAPI
+    url: openapi/air-quality-programmatic-apis-stations-api-openapi.yml
+  - type: Documentation
+    url: https://aqicn.org/api/
+  - type: APIReference
+    url: https://aqicn.org/json-api/doc/
+  - type: Authentication
+    url: https://aqicn.org/data-platform/token/
+  - type: Documentation
+    url: https://aqicn.org/json-api/doc/
 name: Air Quality Programmatic APIs
 tags:
   - Air Quality
@@ -60,7 +119,20 @@ tags:
   - Government Data
   - Real-Time Data
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/air-quality-programmatic-apis.png
 access: 3rd-Party
 common:
   - type: AgenticAccess
