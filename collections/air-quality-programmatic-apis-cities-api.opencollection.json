@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Cities API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by City Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tiles.aqicn.org/tiles/feed/:city/",
+            "params": [
+              {
+                "name": "city",
+                "value": "beijing",
+                "type": "path",
+                "description": "City name or station ID"
+              },
+              {
+                "name": "token",
+                "value": "demo",
+                "type": "query",
+                "description": "API authentication token"
+              }
+            ]
+          },
+          "docs": "Retrieve real-time air quality data for a city by name. City names follow AQICN URL conventions (e.g., \"beijing\", \"london\", \"new-york\")."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

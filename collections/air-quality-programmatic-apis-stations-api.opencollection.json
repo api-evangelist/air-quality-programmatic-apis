@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Stations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by Geographic Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tiles.aqicn.org/tiles/feed/geo::lat;:lng/",
+            "params": [
+              {
+                "name": "lat",
+                "value": "39.9042",
+                "type": "path",
+                "description": "Latitude coordinate"
+              },
+              {
+                "name": "lng",
+                "value": "116.4074",
+                "type": "path",
+                "description": "Longitude coordinate"
+              },
+              {
+                "name": "token",
+                "value": "demo",
+                "type": "query",
+                "description": "API authentication token"
+              }
+            ]
+          },
+          "docs": "Retrieve real-time air quality data for the nearest monitoring station to given latitude and longitude coordinates."
+        },
+        {
+          "info": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by City Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tiles.aqicn.org/tiles/feed/:city/",
+            "params": [
+              {
+                "name": "city",
+                "value": "beijing",
+                "type": "path",
+                "description": "City name or station ID"
+              },
+              {
+                "name": "token",
+                "value": "demo",
+                "type": "query",
+                "description": "API authentication token"
+              }
+            ]
+          },
+          "docs": "Retrieve real-time air quality data for a city by name. City names follow AQICN URL conventions (e.g., \"beijing\", \"london\", \"new-york\")."
+        },
+        {
+          "info": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by IP Geolocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tiles.aqicn.org/tiles/feed/ip/",
+            "params": [
+              {
+                "name": "token",
+                "value": "demo",
+                "type": "query",
+                "description": "API authentication token"
+              }
+            ]
+          },
+          "docs": "Retrieve air quality data for the location nearest to the client's IP address using IP geolocation."
+        },
+        {
+          "info": {
+            "name": "Air Quality Programmatic APIs AQICN Search Monitoring Stations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tiles.aqicn.org/tiles/search/",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "London",
+                "type": "query",
+                "description": "Search keyword (city or station name)"
+              },
+              {
+                "name": "token",
+                "value": "demo",
+                "type": "query",
+                "description": "API authentication token"
+              }
+            ]
+          },
+          "docs": "Search for air quality monitoring stations by keyword, city name, or station name."
+        },
+        {
+          "info": {
+            "name": "Air Quality Programmatic APIs AQICN Get Stations Within Map Bounds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tiles.aqicn.org/tiles/map/bounds/",
+            "params": [
+              {
+                "name": "latlng",
+                "value": "35.0,115.0,42.0,125.0",
+                "type": "query",
+                "description": "Bounding box as lat1,lng1,lat2,lng2"
+              },
+              {
+                "name": "networks",
+                "value": "all",
+                "type": "query",
+                "description": "Filter by network (all, china, us, etc.)"
+              },
+              {
+                "name": "token",
+                "value": "demo",
+                "type": "query",
+                "description": "API authentication token"
+              }
+            ]
+          },
+          "docs": "Retrieve all monitoring stations and their current AQI values within a geographic bounding box. Useful for map overlays."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

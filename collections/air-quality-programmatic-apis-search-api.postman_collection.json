@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "9c717230-502d-4124-9b71-d5fa934b7249",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df6ab1cd-e659-4a57-be40-a7ceeb098255",
+          "name": "Air Quality Programmatic APIs AQICN Search Monitoring Stations",
+          "request": {
+            "name": "Air Quality Programmatic APIs AQICN Search Monitoring Stations",
+            "description": {
+              "content": "Search for air quality monitoring stations by keyword, city name, or station name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "(Required) Search keyword (city or station name)"
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) API authentication token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d3367e3-0a1c-492f-ad63-4303c3acb494",
+              "name": "List of matching stations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "London"
+                    },
+                    {
+                      "key": "token",
+                      "value": "demo"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"data\": [\n    {\n      \"uid\": 5724,\n      \"aqi\": \"42\",\n      \"station\": {\n        \"name\": \"London, United Kingdom\",\n        \"geo\": [\n          51.5074,\n          -0.1278\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tiles.aqicn.org/tiles",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "00daed3d-c3bc-4e75-a966-bafef9c28c40",
+    "name": "Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API providing real-time air quality data as map tiles.",
+      "type": "text/plain"
+    }
+  }
+}

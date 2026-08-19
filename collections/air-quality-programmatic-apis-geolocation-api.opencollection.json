@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Geolocation API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geolocation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by Geographic Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tiles.aqicn.org/tiles/feed/geo::lat;:lng/",
+            "params": [
+              {
+                "name": "lat",
+                "value": "39.9042",
+                "type": "path",
+                "description": "Latitude coordinate"
+              },
+              {
+                "name": "lng",
+                "value": "116.4074",
+                "type": "path",
+                "description": "Longitude coordinate"
+              },
+              {
+                "name": "token",
+                "value": "demo",
+                "type": "query",
+                "description": "API authentication token"
+              }
+            ]
+          },
+          "docs": "Retrieve real-time air quality data for the nearest monitoring station to given latitude and longitude coordinates."
+        },
+        {
+          "info": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by IP Geolocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tiles.aqicn.org/tiles/feed/ip/",
+            "params": [
+              {
+                "name": "token",
+                "value": "demo",
+                "type": "query",
+                "description": "API authentication token"
+              }
+            ]
+          },
+          "docs": "Retrieve air quality data for the location nearest to the client's IP address using IP geolocation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

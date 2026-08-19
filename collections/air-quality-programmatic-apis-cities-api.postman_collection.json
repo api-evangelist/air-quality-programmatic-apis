@@ -1,0 +1,134 @@
+{
+  "item": [
+    {
+      "id": "57866fee-914a-42cb-8fbf-7094aef59064",
+      "name": "Cities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de3f8612-a23f-4cad-8816-f5339763af01",
+          "name": "Air Quality Programmatic APIs AQICN Get AQI by City Name",
+          "request": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by City Name",
+            "description": {
+              "content": "Retrieve real-time air quality data for a city by name. City names follow AQICN URL conventions (e.g., \"beijing\", \"london\", \"new-york\").",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "feed",
+                ":city",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) API authentication token"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "city",
+                  "description": "(Required) City name or station ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9b55bf9-3610-4cbd-8fd7-86742a3bf96c",
+              "name": "Air quality data for the city",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed",
+                    ":city",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "demo"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "city",
+                      "description": "(Required) City name or station ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"data\": {\n    \"aqi\": 87,\n    \"idx\": 1451,\n    \"city\": {\n      \"name\": \"Shanghai, China\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tiles.aqicn.org/tiles",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8deb896d-3eb2-4f5b-ac6f-296c3d081d94",
+    "name": "Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Cities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API providing real-time air quality data as map tiles.",
+      "type": "text/plain"
+    }
+  }
+}

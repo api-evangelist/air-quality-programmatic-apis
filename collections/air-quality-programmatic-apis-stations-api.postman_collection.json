@@ -1,0 +1,568 @@
+{
+  "item": [
+    {
+      "id": "89a75b72-95a9-42d8-af76-9b02f3343b2b",
+      "name": "Stations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6d395a16-9a77-4189-9800-e5bb5b3402ee",
+          "name": "Air Quality Programmatic APIs AQICN Get AQI by Geographic Coordinates",
+          "request": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by Geographic Coordinates",
+            "description": {
+              "content": "Retrieve real-time air quality data for the nearest monitoring station to given latitude and longitude coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "feed",
+                "geo:{{lat}};{{lng}}",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) API authentication token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "667a25ae-c308-4833-9c8a-66d3adbfe920",
+              "name": "Air quality data for nearest station",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed",
+                    "geo:{{lat}};{{lng}}",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "demo"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"data\": {\n    \"aqi\": 45,\n    \"idx\": 8502,\n    \"city\": {\n      \"name\": \"Beijing, China\",\n      \"url\": \"https://aqicn.org/city/beijing/\",\n      \"geo\": [\n        39.9042,\n        116.4074\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53c6d038-81a7-4dc4-8f8d-3d8853997e0e",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed",
+                    "geo:{{lat}};{{lng}}",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "demo"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"data\": \"Invalid key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c175a80-0ca0-4a6b-92b6-6568c9f16bdd",
+          "name": "Air Quality Programmatic APIs AQICN Get AQI by City Name",
+          "request": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by City Name",
+            "description": {
+              "content": "Retrieve real-time air quality data for a city by name. City names follow AQICN URL conventions (e.g., \"beijing\", \"london\", \"new-york\").",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "feed",
+                ":city",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) API authentication token"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "city",
+                  "description": "(Required) City name or station ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9e84482-02f9-4857-95e1-bdf50bafd903",
+              "name": "Air quality data for the city",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed",
+                    ":city",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "demo"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "city",
+                      "description": "(Required) City name or station ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"data\": {\n    \"aqi\": 87,\n    \"idx\": 1451,\n    \"city\": {\n      \"name\": \"Shanghai, China\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24429cbc-d7b4-48a3-9abf-adc19fa68835",
+          "name": "Air Quality Programmatic APIs AQICN Get AQI by IP Geolocation",
+          "request": {
+            "name": "Air Quality Programmatic APIs AQICN Get AQI by IP Geolocation",
+            "description": {
+              "content": "Retrieve air quality data for the location nearest to the client's IP address using IP geolocation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "feed",
+                "ip",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) API authentication token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb4273a0-a45b-451c-aac5-3cc086f8850e",
+              "name": "Air quality data for IP-geolocated nearest station",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed",
+                    "ip",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "demo"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"data\": {\n    \"aqi\": 32,\n    \"idx\": 5678\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90630410-2995-465b-b537-59571cec1e39",
+          "name": "Air Quality Programmatic APIs AQICN Search Monitoring Stations",
+          "request": {
+            "name": "Air Quality Programmatic APIs AQICN Search Monitoring Stations",
+            "description": {
+              "content": "Search for air quality monitoring stations by keyword, city name, or station name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keyword",
+                  "value": "<string>",
+                  "description": "(Required) Search keyword (city or station name)"
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) API authentication token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7bef81f-7e47-46a3-bf67-83467bf09174",
+              "name": "List of matching stations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "London"
+                    },
+                    {
+                      "key": "token",
+                      "value": "demo"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"data\": [\n    {\n      \"uid\": 5724,\n      \"aqi\": \"42\",\n      \"station\": {\n        \"name\": \"London, United Kingdom\",\n        \"geo\": [\n          51.5074,\n          -0.1278\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3531e13e-d10c-4026-80ce-a7245e58587f",
+          "name": "Air Quality Programmatic APIs AQICN Get Stations Within Map Bounds",
+          "request": {
+            "name": "Air Quality Programmatic APIs AQICN Get Stations Within Map Bounds",
+            "description": {
+              "content": "Retrieve all monitoring stations and their current AQI values within a geographic bounding box. Useful for map overlays.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "map",
+                "bounds",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "latlng",
+                  "value": "<string>",
+                  "description": "(Required) Bounding box as lat1,lng1,lat2,lng2"
+                },
+                {
+                  "disabled": false,
+                  "key": "networks",
+                  "value": "<string>",
+                  "description": "Filter by network (all, china, us, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) API authentication token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46935cce-0891-4079-a4fd-63ec01488a94",
+              "name": "Stations within the bounding box",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "map",
+                    "bounds",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "latlng",
+                      "value": "35.0,115.0,42.0,125.0"
+                    },
+                    {
+                      "key": "networks",
+                      "value": "all"
+                    },
+                    {
+                      "key": "token",
+                      "value": "demo"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"data\": [\n    {\n      \"uid\": 1451,\n      \"aqi\": \"87\",\n      \"station\": {\n        \"name\": \"Shanghai, China\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://tiles.aqicn.org/tiles",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Latitude coordinate",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<number>",
+      "key": "lat"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Longitude coordinate",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<number>",
+      "key": "lng"
+    }
+  ],
+  "info": {
+    "_postman_id": "91d12132-c73a-4637-a13b-b6050af75b48",
+    "name": "Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Stations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API providing real-time air quality data as map tiles.",
+      "type": "text/plain"
+    }
+  }
+}

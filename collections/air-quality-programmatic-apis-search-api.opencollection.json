@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Search API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Air Quality Programmatic APIs AQICN Search Monitoring Stations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://tiles.aqicn.org/tiles/search/",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "London",
+                "type": "query",
+                "description": "Search keyword (city or station name)"
+              },
+              {
+                "name": "token",
+                "value": "demo",
+                "type": "query",
+                "description": "API authentication token"
+              }
+            ]
+          },
+          "docs": "Search for air quality monitoring stations by keyword, city name, or station name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
