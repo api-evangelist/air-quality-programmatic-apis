@@ -9,7 +9,8 @@ apis:
     The Air Quality Programmatic APIs Real Time Air Quality Tile API API from Air Quality Programmatic
     APIs — 1 operation(s) for air quality programmatic apis real time air quality tile api.
   humanURL: https://aqicn.org/api/
-  tags:
+  tags: []
+  tags_raw:
   - Air Quality Programmatic APIs Real Time Air Quality Tile API
   properties:
   - type: OpenAPI
