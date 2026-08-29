@@ -1,11 +1,30 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Stations API
-  description: API providing real-time air quality data as map tiles.
+  title: AQICN JSON Air Quality Stations API
+  description: 'Real-time and forecast air quality data from 11,000+ monitoring stations globally.
+
+    Returns AQI measurements for PM2.5, PM10, NO2, CO, SO2, and ozone pollutants.
+
+    Authentication requires a free API token from https://aqicn.org/data-platform/token/
+
+
+    Data is provided by the World Air Quality Index project (AQICN) for non-commercial use.
+
+    Rate limit: 1,000 requests per second.
+
+    '
   version: 1.0.0
+  contact:
+    url: https://aqicn.org/faq/
+  license:
+    name: Non-Commercial Use Only
+    url: https://aqicn.org/api/tos/
+  x-generated-from: documentation
 servers:
-- url: https://tiles.aqicn.org/tiles
-  description: Production server
+- url: https://api.waqi.info
+  description: AQICN Production API
+security:
+- TokenAuth: []
 tags:
 - name: Stations
 paths:
@@ -244,31 +263,19 @@ paths:
                         name: Shanghai, China
 components:
   schemas:
-    ForecastData:
+    Attribution:
       type: object
-      description: Multi-day air quality and weather forecast
+      description: Data source attribution
       properties:
-        daily:
-          type: object
-          description: Daily forecasts by pollutant
-          properties:
-            pm25:
-              type: array
-              description: PM2.5 daily forecast values
-              items:
-                $ref: '#/components/schemas/ForecastDay'
-            pm10:
-              type: array
-              items:
-                $ref: '#/components/schemas/ForecastDay'
-            o3:
-              type: array
-              items:
-                $ref: '#/components/schemas/ForecastDay'
-            uvi:
-              type: array
-              items:
-                $ref: '#/components/schemas/ForecastDay'
+        url:
+          type: string
+          format: uri
+          description: Attribution URL
+          example: https://www.epa.gov/airnow
+        name:
+          type: string
+          description: Data source name
+          example: US EPA AirNow
     StationData:
       type: object
       description: Station data including AQI and pollutant readings
@@ -342,6 +349,27 @@ components:
           type: integer
           description: Unix timestamp
           example: 1745056800
+    CityInfo:
+      type: object
+      description: City and location information for the station
+      properties:
+        name:
+          type: string
+          description: City and station name
+          example: Beijing, China
+        url:
+          type: string
+          format: uri
+          description: Station URL on AQICN
+          example: https://aqicn.org/city/beijing/
+        geo:
+          type: array
+          description: Geographic coordinates [latitude, longitude]
+          items:
+            type: number
+          example:
+          - 39.9042
+          - 116.4074
     ForecastDay:
       type: object
       description: Single-day forecast value
@@ -362,19 +390,6 @@ components:
           type: integer
           description: Minimum AQI for the day
           example: 31
-    Attribution:
-      type: object
-      description: Data source attribution
-      properties:
-        url:
-          type: string
-          format: uri
-          description: Attribution URL
-          example: https://www.epa.gov/airnow
-        name:
-          type: string
-          description: Data source name
-          example: US EPA AirNow
     ErrorResponse:
       type: object
       description: Error response
@@ -386,6 +401,41 @@ components:
           type: string
           description: Error message
           example: Invalid key
+    AQIStation:
+      type: object
+      description: Air quality monitoring station with current readings
+      properties:
+        status:
+          type: string
+          description: Response status (ok or error)
+          example: ok
+        data:
+          $ref: '#/components/schemas/StationData'
+    ForecastData:
+      type: object
+      description: Multi-day air quality and weather forecast
+      properties:
+        daily:
+          type: object
+          description: Daily forecasts by pollutant
+          properties:
+            pm25:
+              type: array
+              description: PM2.5 daily forecast values
+              items:
+                $ref: '#/components/schemas/ForecastDay'
+            pm10:
+              type: array
+              items:
+                $ref: '#/components/schemas/ForecastDay'
+            o3:
+              type: array
+              items:
+                $ref: '#/components/schemas/ForecastDay'
+            uvi:
+              type: array
+              items:
+                $ref: '#/components/schemas/ForecastDay'
     PollutantData:
       type: object
       description: Individual pollutant AQI values
@@ -432,40 +482,9 @@ components:
             v:
               type: number
               example: 8
-    AQIStation:
-      type: object
-      description: Air quality monitoring station with current readings
-      properties:
-        status:
-          type: string
-          description: Response status (ok or error)
-          example: ok
-        data:
-          $ref: '#/components/schemas/StationData'
-    CityInfo:
-      type: object
-      description: City and location information for the station
-      properties:
-        name:
-          type: string
-          description: City and station name
-          example: Beijing, China
-        url:
-          type: string
-          format: uri
-          description: Station URL on AQICN
-          example: https://aqicn.org/city/beijing/
-        geo:
-          type: array
-          description: Geographic coordinates [latitude, longitude]
-          items:
-            type: number
-          example:
-          - 39.9042
-          - 116.4074
   securitySchemes:
-    ApiKeyAuth:
+    TokenAuth:
       type: apiKey
       in: query
       name: token
-      description: API key for authentication
+      description: API token obtained from https://aqicn.org/data-platform/token/
