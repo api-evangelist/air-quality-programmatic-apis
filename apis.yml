@@ -81,6 +81,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/air-quality-programmatic-apis.png
 access: 3rd-Party
 common:
+  - type: Website
+    url: https://www.aqicn.org/
   - type: AgenticAccess
     url: agentic-access/air-quality-programmatic-apis-agentic-access.yml
   - type: DomainSecurity
