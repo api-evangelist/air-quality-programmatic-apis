@@ -1,12 +1,9 @@
 aid: air-quality-programmatic-apis
 url: https://raw.githubusercontent.com/api-search/air-quality-programmatic-apis/refs/heads/main/apis.yml
 apis:
-- aid: >-
-    air-quality-programmatic-apis:air-quality-programmatic-apis-air-quality-programmatic-apis-real-time-air-quality-tile-api-api
-  name: >-
-    Air Quality Programmatic APIs Air Quality Programmatic APIs Real Time Air Quality Tile API API
-  description: >-
-    The Air Quality Programmatic APIs Real Time Air Quality Tile API API from Air Quality Programmatic
+- aid: air-quality-programmatic-apis:air-quality-programmatic-apis-air-quality-programmatic-apis-real-time-air-quality-tile-api-api
+  name: Air Quality Programmatic APIs Air Quality Programmatic APIs Real Time Air Quality Tile API
+  description: The Air Quality Programmatic APIs Real Time Air Quality Tile API API from Air Quality Programmatic
     APIs — 1 operation(s) for air quality programmatic apis real time air quality tile api.
   humanURL: https://aqicn.org/api/
   tags: []
@@ -14,8 +11,7 @@ apis:
   - Air Quality Programmatic APIs Real Time Air Quality Tile API
   properties:
   - type: OpenAPI
-    url: >-
-      openapi/air-quality-programmatic-apis-air-quality-programmatic-apis-real-time-air-quality-tile-api-api-openapi.yml
+    url: openapi/air-quality-programmatic-apis-air-quality-programmatic-apis-real-time-air-quality-tile-api-api-openapi.yml
   - type: Documentation
     url: https://aqicn.org/api/
   - type: APIReference
@@ -43,14 +39,14 @@ apis:
     url: https://aqicn.org/json-api/doc/
 name: Air Quality Programmatic APIs
 tags:
-  - Air Quality
-  - Environment
-  - EPA
-  - Open Data
-  - Public Health
-  - IoT
-  - Government Data
-  - Real-Time Data
+- Air Quality
+- Environment
+- EPA
+- Open Data
+- Public Health
+- IoT
+- Government Data
+- Real-Time Data
 kind: contract
 deliveryModel:
   model: saas
@@ -81,99 +77,105 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/air-quality-programmatic-apis.png
 access: 3rd-Party
 common:
-  - type: Website
-    url: https://www.aqicn.org/
-  - type: AgenticAccess
-    url: agentic-access/air-quality-programmatic-apis-agentic-access.yml
-  - type: DomainSecurity
-    url: security/air-quality-programmatic-apis-domain-security.yml
-  - type: Authentication
-    url: authentication/air-quality-programmatic-apis-authentication.yml
-  - type: GitHubOrganization
-    url: https://github.com/USEPA
-  - name: AQICN FAQ
-    url: https://aqicn.org/faq/
-    type: FAQ
-    description: Frequently asked questions about AQICN air quality data and APIs.
-  - name: AQICN API Token
-    url: https://aqicn.org/data-platform/token/
-    type: Authentication
-    description: Request an API access token for AQICN programmatic APIs.
-  - name: AQICN Map
-    url: https://aqicn.org/map/
-    type: Portal
-    description: World air quality index map powered by the AQICN API.
-  - name: AQICN Data Platform
-    url: https://aqicn.org/data-platform/
-    type: Portal
-    description: AQICN data platform for historical downloads and enterprise access.
-  - name: AQICN Terms of Use
-    url: https://aqicn.org/api/tos/
-    type: TermsOfService
-    description: Terms of service for AQICN API usage (non-commercial free use).
-  - type: Features
-    data:
-      - name: Real-Time AQI Data
-        description: Live air quality index readings from 11,000+ monitoring stations updated continuously.
-      - name: Global Coverage
-        description: Data from 1,000+ cities worldwide including US EPA, China MEP, Europe EEA, and other monitoring networks.
-      - name: Multi-Pollutant Data
-        description: Pollutant-specific AQI for PM2.5, PM10, nitrogen dioxide, carbon monoxide, sulfur dioxide, and ozone.
-      - name: Air Quality Forecasts
-        description: 3-8 day air quality forecasts for major monitoring stations.
-      - name: Geolocation Queries
-        description: Find nearest stations by latitude/longitude, city name, or IP-based geolocation.
-      - name: Map Tile API
-        description: Raster map tiles for overlaying real-time AQI data on web maps (Leaflet, Google Maps, etc.).
-      - name: Station Search
-        description: Search and discover monitoring stations by name or location within a geographic boundary.
-      - name: Weather Data
-        description: Current weather conditions co-located with air quality measurements.
-  - type: UseCases
-    data:
-      - name: Air Quality Mobile Apps
-        description: Build apps that show users real-time air quality for their location with health recommendations.
-      - name: Environmental Monitoring Dashboards
-        description: Create web dashboards visualizing air quality trends across cities and regions.
-      - name: Public Health Research
-        description: Access historical and real-time air quality data for epidemiological and public health research.
-      - name: Smart City Integration
-        description: Integrate air quality data into smart city platforms and IoT systems for environmental management.
-      - name: Outdoor Activity Planning
-        description: Provide air quality-based recommendations for outdoor activities in fitness and weather apps.
-  - type: Integrations
-    data:
-      - name: Leaflet Maps
-        description: Integrate AQI map tiles with Leaflet.js for interactive air quality maps.
-      - name: Google Maps
-        description: Overlay AQI data on Google Maps using the tile API.
-      - name: US EPA AirNow
-        description: Data aggregated from US EPA AirNow monitoring network.
-      - name: OpenAQ
-        description: Complementary open air quality data platform with API access.
-  - name: AQICN Spectral Rules
-    url: rules/aqicn-spectral-rules.yml
-    type: SpectralRules
-    description: Spectral rules for AQICN API conventions.
-  - name: AQICN Vocabulary
-    url: vocabulary/aqicn-vocabulary.yaml
-    type: Vocabulary
-    description: Taxonomy for AQICN air quality APIs.
-  - type: Integrations
-    url: https://aqicn.org/integrations
+- type: Website
+  url: https://www.aqicn.org/
+- type: AgenticAccess
+  url: agentic-access/air-quality-programmatic-apis-agentic-access.yml
+- type: DomainSecurity
+  url: security/air-quality-programmatic-apis-domain-security.yml
+- type: Authentication
+  url: authentication/air-quality-programmatic-apis-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/USEPA
+- name: AQICN FAQ
+  url: https://aqicn.org/faq/
+  type: FAQ
+  description: Frequently asked questions about AQICN air quality data and APIs.
+- name: AQICN API Token
+  url: https://aqicn.org/data-platform/token/
+  type: Authentication
+  description: Request an API access token for AQICN programmatic APIs.
+- name: AQICN Map
+  url: https://aqicn.org/map/
+  type: Portal
+  description: World air quality index map powered by the AQICN API.
+- name: AQICN Data Platform
+  url: https://aqicn.org/data-platform/
+  type: Portal
+  description: AQICN data platform for historical downloads and enterprise access.
+- name: AQICN Terms of Use
+  url: https://aqicn.org/api/tos/
+  type: TermsOfService
+  description: Terms of service for AQICN API usage (non-commercial free use).
+- type: Features
+  data:
+  - name: Real-Time AQI Data
+    description: Live air quality index readings from 11,000+ monitoring stations updated continuously.
+  - name: Global Coverage
+    description: Data from 1,000+ cities worldwide including US EPA, China MEP, Europe EEA, and other
+      monitoring networks.
+  - name: Multi-Pollutant Data
+    description: Pollutant-specific AQI for PM2.5, PM10, nitrogen dioxide, carbon monoxide, sulfur dioxide,
+      and ozone.
+  - name: Air Quality Forecasts
+    description: 3-8 day air quality forecasts for major monitoring stations.
+  - name: Geolocation Queries
+    description: Find nearest stations by latitude/longitude, city name, or IP-based geolocation.
+  - name: Map Tile API
+    description: Raster map tiles for overlaying real-time AQI data on web maps (Leaflet, Google Maps,
+      etc.).
+  - name: Station Search
+    description: Search and discover monitoring stations by name or location within a geographic boundary.
+  - name: Weather Data
+    description: Current weather conditions co-located with air quality measurements.
+- type: UseCases
+  data:
+  - name: Air Quality Mobile Apps
+    description: Build apps that show users real-time air quality for their location with health recommendations.
+  - name: Environmental Monitoring Dashboards
+    description: Create web dashboards visualizing air quality trends across cities and regions.
+  - name: Public Health Research
+    description: Access historical and real-time air quality data for epidemiological and public health
+      research.
+  - name: Smart City Integration
+    description: Integrate air quality data into smart city platforms and IoT systems for environmental
+      management.
+  - name: Outdoor Activity Planning
+    description: Provide air quality-based recommendations for outdoor activities in fitness and weather
+      apps.
+- type: Integrations
+  data:
+  - name: Leaflet Maps
+    description: Integrate AQI map tiles with Leaflet.js for interactive air quality maps.
+  - name: Google Maps
+    description: Overlay AQI data on Google Maps using the tile API.
+  - name: US EPA AirNow
+    description: Data aggregated from US EPA AirNow monitoring network.
+  - name: OpenAQ
+    description: Complementary open air quality data platform with API access.
+- name: AQICN Spectral Rules
+  url: rules/aqicn-spectral-rules.yml
+  type: SpectralRules
+  description: Spectral rules for AQICN API conventions.
+- name: AQICN Vocabulary
+  url: vocabulary/aqicn-vocabulary.yaml
+  type: Vocabulary
+  description: Taxonomy for AQICN air quality APIs.
+- type: Integrations
+  url: https://aqicn.org/integrations
 created: '2024-11-07'
-modified: '2026-05-19'
+modified: '2026-09-16'
 position: Consuming
-description: >-
-  Air Quality Programmatic APIs provide real-time and forecast air quality data from 11,000+ monitoring stations in
-  1,000+ cities worldwide. APIs deliver Air Quality Index (AQI) measurements for PM2.5, PM10, NO2, CO, SO2, and ozone
-  pollutants. Provided by AQICN (World Air Quality Index project) in partnership with the US EPA and global
-  environmental agencies. Data is available via JSON API and map tile API for visualization.
+description: Air Quality Programmatic APIs provide real-time and forecast air quality data from 11,000+
+  monitoring stations in 1,000+ cities worldwide. APIs deliver Air Quality Index (AQI) measurements for
+  PM2.5, PM10, NO2, CO, SO2, and ozone pollutants. Provided by AQICN (World Air Quality Index project)
+  in partnership with the US EPA and global environmental agencies. Data is available via JSON API and
+  map tile API for visualization.
 integrations:
-  - name: the World Air Quality Index project
-  - name: made in åäº¬
-  - name: made in Scheveningen
+- name: the World Air Quality Index project
+- name: made in åäº¬
+- name: made in Scheveningen
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 specificationVersion: '0.23'
