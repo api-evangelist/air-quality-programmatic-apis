@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API
+  title: Air Quality Programmatic APIs Real-time Air Quality Tile…
   description: API providing real-time air quality data as map tiles.
   version: 1.0.0
 servers:
@@ -68,6 +68,8 @@ paths:
       - ApiKeyAuth: []
       tags:
       - Air Quality Programmatic APIs Real Time Air Quality Tile API
+      operationId: getByAqiByZByX{y}Png
+      x-operation-id-source: derived
 components:
   securitySchemes:
     ApiKeyAuth:
