@@ -261,19 +261,43 @@ paths:
                         name: Shanghai, China
 components:
   schemas:
-    Attribution:
+    TimeInfo:
       type: object
-      description: Data source attribution
+      description: Timestamp information for the reading
       properties:
+        s:
+          type: string
+          description: ISO 8601 timestamp of measurement
+          example: '2025-04-19 10:00:00'
+        tz:
+          type: string
+          description: Station timezone
+          example: +08:00
+        v:
+          type: integer
+          description: Unix timestamp
+          example: 1745056800
+    CityInfo:
+      type: object
+      description: City and location information for the station
+      properties:
+        name:
+          type: string
+          description: City and station name
+          example: Beijing, China
         url:
           type: string
           format: uri
-          description: Attribution URL
-          example: https://www.epa.gov/airnow
-        name:
-          type: string
-          description: Data source name
-          example: US EPA AirNow
+          description: Station URL on AQICN
+          example: https://aqicn.org/city/beijing/
+        geo:
+          type: array
+          description: Geographic coordinates [latitude, longitude]
+          items:
+            type: number
+          example:
+          - 39.9042
+          - 116.4074
     StationData:
       type: object
       description: Station data including AQI and pollutant readings
@@ -299,83 +323,17 @@ components:
           description: Data source attributions
           items:
             $ref: '#/components/schemas/Attribution'
-    PollutantData:
+    ErrorResponse:
       type: object
-      description: Individual pollutant AQI values
-      properties:
-        pm25:
-          type: object
-          description: PM2.5 AQI reading
-          properties:
-            v:
-              type: number
-              example: 45
-        pm10:
-          type: object
-          description: PM10 AQI reading
-          properties:
-            v:
-              type: number
-              example: 32
-        no2:
-          type: object
-          description: Nitrogen dioxide AQI reading
-          properties:
-            v:
-              type: number
-              example: 12
-        o3:
-          type: object
-          description: Ozone AQI reading
-          properties:
-            v:
-              type: number
-              example: 28
-        so2:
-          type: object
-          description: Sulfur dioxide AQI reading
-          properties:
-            v:
-              type: number
-              example: 5
-        co:
-          type: object
-          description: Carbon monoxide AQI reading
-          properties:
-            v:
-              type: number
-              example: 8
-    CityInfo:
-      type: object
-      description: City and location information for the station
-      properties:
-        name:
-          type: string
-          description: City and station name
-          example: Beijing, China
-        url:
-          type: string
-          format: uri
-          description: Station URL on AQICN
-          example: https://aqicn.org/city/beijing/
-        geo:
-          type: array
-          description: Geographic coordinates [latitude, longitude]
-          items:
-            type: number
-          example:
-          - 39.9042
-          - 116.4074
-    AQIStation:
-      type: object
-      description: Air quality monitoring station with current readings
+      description: Error response
       properties:
         status:
           type: string
-          description: Response status (ok or error)
-          example: ok
+          example: error
         data:
-          $ref: '#/components/schemas/StationData'
+          type: string
+          description: Error message
+          example: Invalid key
     ForecastData:
       type: object
       description: Multi-day air quality and weather forecast
@@ -433,33 +391,6 @@ components:
                     type: array
                     items:
                       type: number
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        status:
-          type: string
-          example: error
-        data:
-          type: string
-          description: Error message
-          example: Invalid key
-    TimeInfo:
-      type: object
-      description: Timestamp information for the reading
-      properties:
-        s:
-          type: string
-          description: ISO 8601 timestamp of measurement
-          example: '2025-04-19 10:00:00'
-        tz:
-          type: string
-          description: Station timezone
-          example: +08:00
-        v:
-          type: integer
-          description: Unix timestamp
-          example: 1745056800
     ForecastDay:
       type: object
       description: Single-day forecast value
@@ -480,6 +411,75 @@ components:
           type: integer
           description: Minimum AQI for the day
           example: 31
+    PollutantData:
+      type: object
+      description: Individual pollutant AQI values
+      properties:
+        pm25:
+          type: object
+          description: PM2.5 AQI reading
+          properties:
+            v:
+              type: number
+              example: 45
+        pm10:
+          type: object
+          description: PM10 AQI reading
+          properties:
+            v:
+              type: number
+              example: 32
+        no2:
+          type: object
+          description: Nitrogen dioxide AQI reading
+          properties:
+            v:
+              type: number
+              example: 12
+        o3:
+          type: object
+          description: Ozone AQI reading
+          properties:
+            v:
+              type: number
+              example: 28
+        so2:
+          type: object
+          description: Sulfur dioxide AQI reading
+          properties:
+            v:
+              type: number
+              example: 5
+        co:
+          type: object
+          description: Carbon monoxide AQI reading
+          properties:
+            v:
+              type: number
+              example: 8
+    AQIStation:
+      type: object
+      description: Air quality monitoring station with current readings
+      properties:
+        status:
+          type: string
+          description: Response status (ok or error)
+          example: ok
+        data:
+          $ref: '#/components/schemas/StationData'
+    Attribution:
+      type: object
+      description: Data source attribution
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Attribution URL
+          example: https://www.epa.gov/airnow
+        name:
+          type: string
+          description: Data source name
+          example: US EPA AirNow
   securitySchemes:
     TokenAuth:
       type: apiKey
