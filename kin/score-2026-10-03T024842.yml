@@ -1,21 +1,19 @@
-# Kin Score artifact — air-quality-programmatic-apis — 2026-08-25T154045
+# Kin Score artifact — air-quality-programmatic-apis — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: air-quality-programmatic-apis
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 38.1
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 32.6
   band: thin
   facets:
-    discoverability: 64.8
-    contract_quality: 58.7
-    governance: 28.8
+    discoverability: 57.1
+    contract_quality: 33.0
+    contract_governance: 27.3
     operational_transparency: 10.5
-    developer_ergonomics: 21.4
-    commercial_clarity: 26.3
-    contract_governance: 28.8
+    developer_ergonomics: 38.1
     access_clarity: 26.3
   agent_readiness:
     score: 28.7
@@ -44,12 +42,12 @@ kin_score:
     applies: true
     regime: Government & Public Sector
     regime_id: government
-    score: 38.9
+    score: 20.6
     matched_via: tags
   provenance:
     agentic_access: derived
     contracts:
-      total: 6
-      derived: 0
-      coverage: 0.0
+      total: 3
+      derived: 2
+      coverage: 66.7
       callable: 100.0
