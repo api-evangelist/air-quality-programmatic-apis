@@ -77,6 +77,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/air-quality-programmatic-apis.png
 access: 3rd-Party
 common:
+- url: https://aqicn.org/blog/
+  type: Blog
 - type: Website
   url: https://www.aqicn.org/
 - type: AgenticAccess
@@ -164,7 +166,7 @@ common:
 - type: Integrations
   url: https://aqicn.org/integrations
 created: '2024-11-07'
-modified: '2026-09-16'
+modified: '2026-10-06'
 position: Consuming
 description: Air Quality Programmatic APIs provide real-time and forecast air quality data from 11,000+
   monitoring stations in 1,000+ cities worldwide. APIs deliver Air Quality Index (AQI) measurements for
