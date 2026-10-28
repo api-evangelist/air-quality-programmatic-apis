@@ -1,4 +1,4 @@
-# Air Quality Programmatic APIs (air-quality-programmatic-apis)
+# Air Quality Programmatic APIs
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,94 +66,184 @@
 
 Air Quality Programmatic APIs provide real-time and forecast air quality data from 11,000+ monitoring stations in 1,000+ cities worldwide. APIs deliver Air Quality Index (AQI) measurements for PM2.5, PM10, NO2, CO, SO2, and ozone pollutants. Provided by AQICN (World Air Quality Index project) in partnership with the US EPA and global environmental agencies. Data is available via JSON API and map tile API for visualization.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-search/air-quality-programmatic-apis/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-search/air-quality-programmatic-apis/refs/heads/main/apis.yml)
+**Areas:** Air Quality · Environment · EPA · Open Data · Public Health · IoT · Government Data · Real-Time Data
 
-## Scope
+## Air Quality Programmatic APIs on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Air Quality Programmatic APIs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/air-quality-programmatic-apis/](https://apis.io/providers/air-quality-programmatic-apis/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (2)
 
-- Air Quality
-- Environment
-- EPA
-- Open Data
-- Public Health
-- IoT
-- Government Data
-- Real-Time Data
+- [Air Quality Programmatic APIs Air Quality Programmatic APIs Real Time Air Quality Tile API](https://apis.io/apis/air-quality-programmatic-apis/air-quality-programmatic-apis-air-quality-programmatic-apis-real-time-air-quality-tile-api-api/) — The Air Quality Programmatic APIs Real Time Air Quality Tile API API from Air Quality Programmatic APIs — 1 operation(s) for air quality programmatic apis…
+- [Air Quality Programmatic APIs Stations API](https://apis.io/apis/air-quality-programmatic-apis/air-quality-programmatic-apis-stations-api/) — The Stations API from Air Quality Programmatic APIs — 5 operation(s) for stations.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-07
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### AQICN Real-Time Air Quality API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Real-time and forecast air quality data from 11,000+ monitoring stations globally. Returns AQI measurements for PM2.5, PM10, NO2, CO, SO2, and ozone pollutants by city, station, geographic coordinates, or IP geolocation. Includes weather data and 3-8 day air quality forecasts.
+- [Air Quality Programmatic Apis Agentic Access](https://apis.io/agentic-access/air-quality-programmatic-apis/air-quality-programmatic-apis-agentic-access/)
 
-- **Human URL:** [https://aqicn.org/api/](https://aqicn.org/api/)
+#### JSON Schema (9)
 
-#### Tags
+The data models the API reads and writes.
 
-- Air Quality
-- AQI
-- PM2.5
-- EPA
-- Environment
-- Public Health
-- Real-Time
-- Open Data
+- [AQIStation](https://apis.io/schemas/air-quality-programmatic-apis/aqicn-aqi-station/)
+- [Attribution](https://apis.io/schemas/air-quality-programmatic-apis/aqicn-attribution/)
+- [CityInfo](https://apis.io/schemas/air-quality-programmatic-apis/aqicn-city-info/)
+- [ForecastData](https://apis.io/schemas/air-quality-programmatic-apis/aqicn-forecast-data/)
+- [ForecastDay](https://apis.io/schemas/air-quality-programmatic-apis/aqicn-forecast-day/)
+- [PollutantData](https://apis.io/schemas/air-quality-programmatic-apis/aqicn-pollutant-data/)
+- [StationData](https://apis.io/schemas/air-quality-programmatic-apis/aqicn-station-data/)
+- [StationSearchResult](https://apis.io/schemas/air-quality-programmatic-apis/aqicn-station-search-result/)
+- [TimeInfo](https://apis.io/schemas/air-quality-programmatic-apis/aqicn-time-info/)
 
-#### Properties
+#### JSON Structure (9)
 
-- [Documentation](https://aqicn.org/api/)
-- [API Reference](https://aqicn.org/json-api/doc/)
-- [OpenAPI](openapi/air-quality-programmatic-apis-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/air-quality-programmatic-apis.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/air-quality-programmatic-apis.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://aqicn.org/data-platform/token/)
+Data models expressed in JSON Structure.
 
-### AQICN JSON Air Quality API
+- [Aqicn Aqi Station Structure](https://apis.io/json-structure/air-quality-programmatic-apis/aqicn-aqi-station-structure/)
+- [Aqicn Attribution Structure](https://apis.io/json-structure/air-quality-programmatic-apis/aqicn-attribution-structure/)
+- [Aqicn City Info Structure](https://apis.io/json-structure/air-quality-programmatic-apis/aqicn-city-info-structure/)
+- [Aqicn Forecast Data Structure](https://apis.io/json-structure/air-quality-programmatic-apis/aqicn-forecast-data-structure/)
+- [Aqicn Forecast Day Structure](https://apis.io/json-structure/air-quality-programmatic-apis/aqicn-forecast-day-structure/)
+- [Aqicn Pollutant Data Structure](https://apis.io/json-structure/air-quality-programmatic-apis/aqicn-pollutant-data-structure/)
+- [Aqicn Station Data Structure](https://apis.io/json-structure/air-quality-programmatic-apis/aqicn-station-data-structure/)
+- [Aqicn Station Search Result Structure](https://apis.io/json-structure/air-quality-programmatic-apis/aqicn-station-search-result-structure/)
+- [Aqicn Time Info Structure](https://apis.io/json-structure/air-quality-programmatic-apis/aqicn-time-info-structure/)
 
-JSON API returning real-time AQI station data by city name, station name, geographic coordinates, or IP geolocation. Includes pollutant breakdowns (PM2.5, PM10, NO2, CO, SO2, O3), weather data, and multi-day forecasts.
+#### JSON-LD (1)
 
-- **Human URL:** [https://aqicn.org/json-api/doc/](https://aqicn.org/json-api/doc/)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Aqicn Context](https://apis.io/jsonld/air-quality-programmatic-apis/aqicn-context/)
 
-- Air Quality
-- AQI
-- PM2.5
-- JSON
-- Real-Time
-- Forecast
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://aqicn.org/json-api/doc/)
-- [API Reference](https://aqicn.org/json-api/doc/)
-- [OpenAPI](openapi/aqicn-json-api-openapi.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Aqicn Vocabulary](https://apis.io/vocabularies/air-quality-programmatic-apis/aqicn-vocabulary/)
 
-## Common Properties
+#### Examples (9)
 
-- [GitHub Organization](https://github.com/USEPA)
-- [F A Q](https://aqicn.org/faq/)
-- [Authentication](https://aqicn.org/data-platform/token/)
-- [Portal](https://aqicn.org/map/)
-- [Portal](https://aqicn.org/data-platform/)
-- [Terms of Service](https://aqicn.org/api/tos/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Spectral Rules](rules/aqicn-spectral-rules.yml)
-- [Vocabulary](vocabulary/aqicn-vocabulary.yaml)
-- [Integrations](https://aqicn.org/integrations)
+Example requests and responses.
 
-## Maintainers
+- [Aqicn Aqi Station Example](https://apis.io/examples/air-quality-programmatic-apis/aqicn-aqi-station-example/)
+- [Aqicn Attribution Example](https://apis.io/examples/air-quality-programmatic-apis/aqicn-attribution-example/)
+- [Aqicn City Info Example](https://apis.io/examples/air-quality-programmatic-apis/aqicn-city-info-example/)
+- [Aqicn Forecast Data Example](https://apis.io/examples/air-quality-programmatic-apis/aqicn-forecast-data-example/)
+- [Aqicn Forecast Day Example](https://apis.io/examples/air-quality-programmatic-apis/aqicn-forecast-day-example/)
+- [Aqicn Pollutant Data Example](https://apis.io/examples/air-quality-programmatic-apis/aqicn-pollutant-data-example/)
+- [Aqicn Station Data Example](https://apis.io/examples/air-quality-programmatic-apis/aqicn-station-data-example/)
+- [Aqicn Station Search Result Example](https://apis.io/examples/air-quality-programmatic-apis/aqicn-station-search-result-example/)
+- [Aqicn Time Info Example](https://apis.io/examples/air-quality-programmatic-apis/aqicn-time-info-example/)
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Air Quality Programmatic APIs Real-time Air Quality Tile API](https://apis.io/collections/air-quality-programmatic-apis/open-air-quality-programmatic-apis/)
+- [Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API API](https://apis.io/collections/air-quality-programmatic-apis/open-air-quality-programmatic-apis-air-quality-programmatic-apis-real-time-air-quality-tile-api-api/)
+- [Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Cities API](https://apis.io/collections/air-quality-programmatic-apis/open-air-quality-programmatic-apis-cities-api/)
+- [Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Geolocation API](https://apis.io/collections/air-quality-programmatic-apis/open-air-quality-programmatic-apis-geolocation-api/)
+- [Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Map API](https://apis.io/collections/air-quality-programmatic-apis/open-air-quality-programmatic-apis-map-api/)
+- [Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Search API](https://apis.io/collections/air-quality-programmatic-apis/open-air-quality-programmatic-apis-search-api/)
+- [Air Quality Programmatic APIs Real-time Air Quality Tile Air Quality Programmatic APIs Real Time Air Quality Tile API Stations API](https://apis.io/collections/air-quality-programmatic-apis/open-air-quality-programmatic-apis-stations-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Air Quality Programmatic APIs — jsonschema rules](https://apis.io/rules/air-quality-programmatic-apis/air-quality-programmatic-apis-jsonschema-spectral-rules/)
+- [Air Quality Programmatic APIs API Rules](https://apis.io/rules/air-quality-programmatic-apis/air-quality-programmatic-apis-spectral-rules/)
+- [Air Quality Programmatic APIs — aqicn rules](https://apis.io/rules/air-quality-programmatic-apis/aqicn-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Air Quality Programmatic Apis Authentication](https://apis.io/security/air-quality-programmatic-apis/air-quality-programmatic-apis-authentication/)
+- [Air Quality Programmatic Apis Domain Security](https://apis.io/security/air-quality-programmatic-apis/air-quality-programmatic-apis-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Air Quality Programmatic Apis Plans Pricing](https://apis.io/plans/air-quality-programmatic-apis/air-quality-programmatic-apis-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Air Quality Programmatic Apis Rate Limits](https://apis.io/rate-limits/air-quality-programmatic-apis/air-quality-programmatic-apis-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Air Quality Programmatic Apis Finops](https://apis.io/finops/air-quality-programmatic-apis/air-quality-programmatic-apis-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.aqicn.org/)
+- [Blog](https://aqicn.org/blog/)
+- [Terms of service](https://aqicn.org/api/tos/)
+- [GitHub](https://github.com/USEPA)
+
+## API Evangelist rating
+
+**Kin Score 31.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 33.0 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 18.4 |
+
+**Agent readiness 26.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/air-quality-programmatic-apis/](https://apis.io/providers/air-quality-programmatic-apis/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Air Quality Programmatic APIs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/air-quality-programmatic-apis/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
